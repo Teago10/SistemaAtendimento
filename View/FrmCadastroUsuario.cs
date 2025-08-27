@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SistemaAtendimento
+namespace SistemaAtendimento.View
 {
-    public partial class FrmCadastroClientes : Form
+    public partial class FrmCadastroUsuario : Form
     {
-        public FrmCadastroClientes()
+        public FrmCadastroUsuario()
         {
             InitializeComponent();
-        }
-
-        private void grdDadosCliente_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -62,26 +62,27 @@
             // clienteToolStripMenuItem
             // 
             clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            clienteToolStripMenuItem.Size = new Size(179, 22);
+            clienteToolStripMenuItem.Size = new Size(180, 22);
             clienteToolStripMenuItem.Text = "Clientes";
             clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
             // 
             // usuáriosToolStripMenuItem
             // 
             usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            usuáriosToolStripMenuItem.Size = new Size(179, 22);
+            usuáriosToolStripMenuItem.Size = new Size(180, 22);
             usuáriosToolStripMenuItem.Text = "Usuários";
+            usuáriosToolStripMenuItem.Click += usuáriosToolStripMenuItem_Click;
             // 
             // etapasToolStripMenuItem
             // 
             etapasToolStripMenuItem.Name = "etapasToolStripMenuItem";
-            etapasToolStripMenuItem.Size = new Size(179, 22);
+            etapasToolStripMenuItem.Size = new Size(180, 22);
             etapasToolStripMenuItem.Text = "Etapas";
             // 
             // statusAtendimentoToolStripMenuItem
             // 
             statusAtendimentoToolStripMenuItem.Name = "statusAtendimentoToolStripMenuItem";
-            statusAtendimentoToolStripMenuItem.Size = new Size(179, 22);
+            statusAtendimentoToolStripMenuItem.Size = new Size(180, 22);
             statusAtendimentoToolStripMenuItem.Text = "Status Atendimento";
             // 
             // atendimentoToolStripMenuItem
@@ -113,8 +114,9 @@
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(93, 22);
+            sairToolStripMenuItem.Size = new Size(180, 22);
             sairToolStripMenuItem.Text = "Sair";
+            sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
             // btnConexao
             // 

@@ -12,23 +12,34 @@ namespace SistemaAtendimento
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FrmCadastroClientes frmCadastroClientes = new FrmCadastroClientes(); //variavel()frmCadastroClientes que recebe variavel do tipo FrmCadastroClientes
+            frmCadastroClientes.ShowDialog(); //ShowDialog - 
         }
 
         private void btnConexao_Click(object sender, EventArgs e)
         {
             try
             {
-                using(SqlConnection conexao = ConexaoDB.GetConexao())
+                using (SqlConnection conexao = ConexaoDB.GetConexao())
                 {
                     conexao.Open();
                     MessageBox.Show("Conexão Realizada com Sucesso!");
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show("Erro ao conectar:" + ex.Message);
             }
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); //fecha toda a aplicação
+        }
+
+        private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
