@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using SistemaAtendimento.Database;
+using SistemaAtendimento.View;
 
 namespace SistemaAtendimento
 {
@@ -12,8 +13,8 @@ namespace SistemaAtendimento
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadastroClientes frmCadastroClientes = new FrmCadastroClientes(); //variavel()frmCadastroClientes que recebe variavel do tipo FrmCadastroClientes
-            frmCadastroClientes.ShowDialog(); //ShowDialog - 
+            FrmCadastroClientes frmCadastroClientes = new FrmCadastroClientes();
+            frmCadastroClientes.ShowDialog();
         }
 
         private void btnConexao_Click(object sender, EventArgs e)
@@ -39,7 +40,20 @@ namespace SistemaAtendimento
 
         private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FrmCadastroUsuario frmCadastroUsuario = new FrmCadastroUsuario();
+            frmCadastroUsuario.ShowDialog();
+        }
 
+        private void etapasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCadastroEtapas frmCadastroEtapas = new FrmCadastroEtapas();
+            frmCadastroEtapas.ShowDialog();
+        }
+
+        private void statusAtendimentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCadastroStatusAtendimento frmCadastroStatusAtendimento = new FrmCadastroStatusAtendimento();
+            frmCadastroStatusAtendimento.ShowDialog();
         }
     }
 }

@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            grdDadosCliente = new GroupBox();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroClientes));
+            grbDadosCliente = new GroupBox();
             cbxEstado = new ComboBox();
             lblEstado = new Label();
             pnlSituacao = new Panel();
@@ -64,61 +66,63 @@
             txtCodigo = new TextBox();
             lblCodigo = new Label();
             btnSalvar = new Button();
+            imlIcones = new ImageList(components);
             btnExcluir = new Button();
             btnEditar = new Button();
             btnNovo = new Button();
             btnCancelar = new Button();
             lblPesquisar = new Label();
-            textBox1 = new TextBox();
+            txtPesquisar = new TextBox();
             btnPesquisar = new Button();
             grbListaClientes = new GroupBox();
             dgvClientes = new DataGridView();
-            grdDadosCliente.SuspendLayout();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            grbDadosCliente.SuspendLayout();
             pnlSituacao.SuspendLayout();
             pnlTipoPessoa.SuspendLayout();
             grbListaClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             SuspendLayout();
             // 
-            // grdDadosCliente
+            // grbDadosCliente
             // 
-            grdDadosCliente.Controls.Add(cbxEstado);
-            grdDadosCliente.Controls.Add(lblEstado);
-            grdDadosCliente.Controls.Add(pnlSituacao);
-            grdDadosCliente.Controls.Add(lblSituacao);
-            grdDadosCliente.Controls.Add(txtCidade);
-            grdDadosCliente.Controls.Add(lblCidade);
-            grdDadosCliente.Controls.Add(txtComplemento);
-            grdDadosCliente.Controls.Add(lblComplemento);
-            grdDadosCliente.Controls.Add(txtBairro);
-            grdDadosCliente.Controls.Add(lblBairro);
-            grdDadosCliente.Controls.Add(txtNumero);
-            grdDadosCliente.Controls.Add(lblNumero);
-            grdDadosCliente.Controls.Add(txtEndereco);
-            grdDadosCliente.Controls.Add(lblEndereco);
-            grdDadosCliente.Controls.Add(txtCep);
-            grdDadosCliente.Controls.Add(lblCep);
-            grdDadosCliente.Controls.Add(txtCpfCnpj);
-            grdDadosCliente.Controls.Add(lblCPFCNPJ);
-            grdDadosCliente.Controls.Add(pnlTipoPessoa);
-            grdDadosCliente.Controls.Add(lblTipoPessoa);
-            grdDadosCliente.Controls.Add(txtCelular);
-            grdDadosCliente.Controls.Add(lblCelular);
-            grdDadosCliente.Controls.Add(txtTelefone);
-            grdDadosCliente.Controls.Add(lblTelefone);
-            grdDadosCliente.Controls.Add(txtEmail);
-            grdDadosCliente.Controls.Add(lblEmail);
-            grdDadosCliente.Controls.Add(txtNome);
-            grdDadosCliente.Controls.Add(lblNome);
-            grdDadosCliente.Controls.Add(txtCodigo);
-            grdDadosCliente.Controls.Add(lblCodigo);
-            grdDadosCliente.Location = new Point(8, 8);
-            grdDadosCliente.Name = "grdDadosCliente";
-            grdDadosCliente.Size = new Size(720, 312);
-            grdDadosCliente.TabIndex = 0;
-            grdDadosCliente.TabStop = false;
-            grdDadosCliente.Text = "Dados do Cliente";
-            grdDadosCliente.Enter += grdDadosCliente_Enter;
+            grbDadosCliente.Controls.Add(cbxEstado);
+            grbDadosCliente.Controls.Add(lblEstado);
+            grbDadosCliente.Controls.Add(pnlSituacao);
+            grbDadosCliente.Controls.Add(lblSituacao);
+            grbDadosCliente.Controls.Add(txtCidade);
+            grbDadosCliente.Controls.Add(lblCidade);
+            grbDadosCliente.Controls.Add(txtComplemento);
+            grbDadosCliente.Controls.Add(lblComplemento);
+            grbDadosCliente.Controls.Add(txtBairro);
+            grbDadosCliente.Controls.Add(lblBairro);
+            grbDadosCliente.Controls.Add(txtNumero);
+            grbDadosCliente.Controls.Add(lblNumero);
+            grbDadosCliente.Controls.Add(txtEndereco);
+            grbDadosCliente.Controls.Add(lblEndereco);
+            grbDadosCliente.Controls.Add(txtCep);
+            grbDadosCliente.Controls.Add(lblCep);
+            grbDadosCliente.Controls.Add(txtCpfCnpj);
+            grbDadosCliente.Controls.Add(lblCPFCNPJ);
+            grbDadosCliente.Controls.Add(pnlTipoPessoa);
+            grbDadosCliente.Controls.Add(lblTipoPessoa);
+            grbDadosCliente.Controls.Add(txtCelular);
+            grbDadosCliente.Controls.Add(lblCelular);
+            grbDadosCliente.Controls.Add(txtTelefone);
+            grbDadosCliente.Controls.Add(lblTelefone);
+            grbDadosCliente.Controls.Add(txtEmail);
+            grbDadosCliente.Controls.Add(lblEmail);
+            grbDadosCliente.Controls.Add(txtNome);
+            grbDadosCliente.Controls.Add(lblNome);
+            grbDadosCliente.Controls.Add(txtCodigo);
+            grbDadosCliente.Controls.Add(lblCodigo);
+            grbDadosCliente.Location = new Point(8, 8);
+            grbDadosCliente.Name = "grbDadosCliente";
+            grbDadosCliente.Size = new Size(720, 312);
+            grbDadosCliente.TabIndex = 0;
+            grbDadosCliente.TabStop = false;
+            grbDadosCliente.Text = "Dados do Cliente";
+            grbDadosCliente.Enter += grdDadosCliente_Enter;
             // 
             // cbxEstado
             // 
@@ -384,6 +388,7 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(288, 23);
             txtNome.TabIndex = 1;
+            txtNome.TextChanged += txtNome_TextChanged;
             // 
             // lblNome
             // 
@@ -396,7 +401,7 @@
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(5, 40);
+            txtCodigo.Location = new Point(8, 40);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(100, 23);
             txtCodigo.TabIndex = 0;
@@ -412,72 +417,106 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(168, 344);
+            btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSalvar.ImageIndex = 5;
+            btnSalvar.ImageList = imlIcones;
+            btnSalvar.Location = new Point(176, 344);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(75, 23);
+            btnSalvar.Size = new Size(72, 32);
             btnSalvar.TabIndex = 17;
             btnSalvar.Text = "Salvar";
+            btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = true;
+            // 
+            // imlIcones
+            // 
+            imlIcones.ColorDepth = ColorDepth.Depth32Bit;
+            imlIcones.ImageStream = (ImageListStreamer)resources.GetObject("imlIcones.ImageStream");
+            imlIcones.TransparentColor = Color.Transparent;
+            imlIcones.Images.SetKeyName(0, "icone-cancelar.png");
+            imlIcones.Images.SetKeyName(1, "icone-edit.png");
+            imlIcones.Images.SetKeyName(2, "icone-excluir.png");
+            imlIcones.Images.SetKeyName(3, "icone-novo.png");
+            imlIcones.Images.SetKeyName(4, "icone-pesquisa.png");
+            imlIcones.Images.SetKeyName(5, "icone-save.png");
             // 
             // btnExcluir
             // 
-            btnExcluir.Location = new Point(248, 344);
+            btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExcluir.ImageIndex = 2;
+            btnExcluir.ImageList = imlIcones;
+            btnExcluir.Location = new Point(256, 344);
             btnExcluir.Name = "btnExcluir";
-            btnExcluir.Size = new Size(75, 23);
+            btnExcluir.Size = new Size(72, 32);
             btnExcluir.TabIndex = 18;
             btnExcluir.Text = "Excluir";
+            btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
             // 
             // btnEditar
             // 
-            btnEditar.Location = new Point(88, 344);
+            btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEditar.ImageIndex = 1;
+            btnEditar.ImageList = imlIcones;
+            btnEditar.Location = new Point(96, 344);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(75, 23);
+            btnEditar.Size = new Size(72, 32);
             btnEditar.TabIndex = 16;
             btnEditar.Text = "Editar";
+            btnEditar.TextAlign = ContentAlignment.MiddleRight;
             btnEditar.UseVisualStyleBackColor = true;
             // 
             // btnNovo
             // 
-            btnNovo.Location = new Point(8, 344);
+            btnNovo.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNovo.ImageIndex = 3;
+            btnNovo.ImageList = imlIcones;
+            btnNovo.Location = new Point(24, 344);
             btnNovo.Name = "btnNovo";
-            btnNovo.Size = new Size(75, 23);
+            btnNovo.Size = new Size(64, 32);
             btnNovo.TabIndex = 15;
             btnNovo.Text = "Novo";
+            btnNovo.TextAlign = ContentAlignment.MiddleRight;
             btnNovo.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(328, 344);
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar.ImageIndex = 0;
+            btnCancelar.ImageList = imlIcones;
+            btnCancelar.Location = new Point(336, 344);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.Size = new Size(80, 32);
             btnCancelar.TabIndex = 19;
             btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.UseVisualStyleBackColor = true;
             // 
             // lblPesquisar
             // 
             lblPesquisar.AutoSize = true;
-            lblPesquisar.Location = new Point(440, 328);
+            lblPesquisar.Location = new Point(435, 333);
             lblPesquisar.Name = "lblPesquisar";
             lblPesquisar.Size = new Size(57, 15);
             lblPesquisar.TabIndex = 6;
             lblPesquisar.Text = "Pesquisar";
             // 
-            // textBox1
+            // txtPesquisar
             // 
-            textBox1.Location = new Point(432, 344);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 23);
-            textBox1.TabIndex = 20;
+            txtPesquisar.Location = new Point(431, 349);
+            txtPesquisar.Name = "txtPesquisar";
+            txtPesquisar.Size = new Size(200, 23);
+            txtPesquisar.TabIndex = 20;
             // 
             // btnPesquisar
             // 
+            btnPesquisar.ImageIndex = 4;
+            btnPesquisar.ImageList = imlIcones;
             btnPesquisar.Location = new Point(640, 344);
             btnPesquisar.Name = "btnPesquisar";
-            btnPesquisar.Size = new Size(72, 23);
+            btnPesquisar.Size = new Size(72, 32);
             btnPesquisar.TabIndex = 21;
-            btnPesquisar.Text = "Pesquisar";
+            btnPesquisar.TextAlign = ContentAlignment.MiddleRight;
             btnPesquisar.UseVisualStyleBackColor = true;
             // 
             // grbListaClientes
@@ -505,18 +544,18 @@
             ClientSize = new Size(734, 624);
             Controls.Add(grbListaClientes);
             Controls.Add(btnPesquisar);
-            Controls.Add(textBox1);
+            Controls.Add(txtPesquisar);
             Controls.Add(lblPesquisar);
             Controls.Add(btnCancelar);
             Controls.Add(btnNovo);
             Controls.Add(btnEditar);
             Controls.Add(btnExcluir);
             Controls.Add(btnSalvar);
-            Controls.Add(grdDadosCliente);
+            Controls.Add(grbDadosCliente);
             Name = "FrmCadastroClientes";
             Text = "Cadastro de Clientes";
-            grdDadosCliente.ResumeLayout(false);
-            grdDadosCliente.PerformLayout();
+            grbDadosCliente.ResumeLayout(false);
+            grbDadosCliente.PerformLayout();
             pnlSituacao.ResumeLayout(false);
             pnlSituacao.PerformLayout();
             pnlTipoPessoa.ResumeLayout(false);
@@ -529,7 +568,7 @@
 
         #endregion
 
-        private GroupBox grdDadosCliente;
+        private GroupBox grbDadosCliente;
         private TextBox txtCodigo;
         private Label lblCodigo;
         private TextBox txtNome;
@@ -570,9 +609,11 @@
         private Button btnNovo;
         private Button btnCancelar;
         private Label lblPesquisar;
-        private TextBox textBox1;
+        private TextBox txtPesquisar;
         private Button btnPesquisar;
         private GroupBox grbListaClientes;
         private DataGridView dgvClientes;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private ImageList imlIcones;
     }
 }

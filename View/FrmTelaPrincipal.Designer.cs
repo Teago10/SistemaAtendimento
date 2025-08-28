@@ -78,12 +78,14 @@
             etapasToolStripMenuItem.Name = "etapasToolStripMenuItem";
             etapasToolStripMenuItem.Size = new Size(180, 22);
             etapasToolStripMenuItem.Text = "Etapas";
+            etapasToolStripMenuItem.Click += etapasToolStripMenuItem_Click;
             // 
             // statusAtendimentoToolStripMenuItem
             // 
             statusAtendimentoToolStripMenuItem.Name = "statusAtendimentoToolStripMenuItem";
             statusAtendimentoToolStripMenuItem.Size = new Size(180, 22);
             statusAtendimentoToolStripMenuItem.Text = "Status Atendimento";
+            statusAtendimentoToolStripMenuItem.Click += statusAtendimentoToolStripMenuItem_Click;
             // 
             // atendimentoToolStripMenuItem
             // 
@@ -114,7 +116,7 @@
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(180, 22);
+            sairToolStripMenuItem.Size = new Size(93, 22);
             sairToolStripMenuItem.Text = "Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
