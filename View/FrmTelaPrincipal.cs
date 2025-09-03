@@ -55,5 +55,10 @@ namespace SistemaAtendimento
             FrmCadastroStatusAtendimento frmCadastroStatusAtendimento = new FrmCadastroStatusAtendimento();
             frmCadastroStatusAtendimento.ShowDialog();
         }
+
+        private void FrmTelaPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
