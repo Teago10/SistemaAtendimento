@@ -33,7 +33,6 @@
             grbDadosUsuario = new GroupBox();
             lblPerfil = new Label();
             lblSenha = new Label();
-            txtPerfil = new TextBox();
             txtSenha = new TextBox();
             lblNome = new Label();
             txtNome = new TextBox();
@@ -50,6 +49,7 @@
             lblPesquisar = new Label();
             grbListaUsuario = new GroupBox();
             gdvListaUsuario = new DataGridView();
+            cbxPerfil = new ComboBox();
             grbDadosUsuario.SuspendLayout();
             grbListaUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gdvListaUsuario).BeginInit();
@@ -57,9 +57,9 @@
             // 
             // grbDadosUsuario
             // 
+            grbDadosUsuario.Controls.Add(cbxPerfil);
             grbDadosUsuario.Controls.Add(lblPerfil);
             grbDadosUsuario.Controls.Add(lblSenha);
-            grbDadosUsuario.Controls.Add(txtPerfil);
             grbDadosUsuario.Controls.Add(txtSenha);
             grbDadosUsuario.Controls.Add(lblNome);
             grbDadosUsuario.Controls.Add(txtNome);
@@ -89,13 +89,6 @@
             lblSenha.Size = new Size(39, 15);
             lblSenha.TabIndex = 6;
             lblSenha.Text = "Senha";
-            // 
-            // txtPerfil
-            // 
-            txtPerfil.Location = new Point(248, 96);
-            txtPerfil.Name = "txtPerfil";
-            txtPerfil.Size = new Size(288, 23);
-            txtPerfil.TabIndex = 4;
             // 
             // txtSenha
             // 
@@ -259,6 +252,14 @@
             gdvListaUsuario.Size = new Size(768, 158);
             gdvListaUsuario.TabIndex = 12;
             // 
+            // cbxPerfil
+            // 
+            cbxPerfil.FormattingEnabled = true;
+            cbxPerfil.Location = new Point(248, 95);
+            cbxPerfil.Name = "cbxPerfil";
+            cbxPerfil.Size = new Size(200, 23);
+            cbxPerfil.TabIndex = 8;
+            // 
             // FrmCadastroUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -293,7 +294,6 @@
         private TextBox txtNome;
         private Label lblPerfil;
         private Label lblSenha;
-        private TextBox txtPerfil;
         private TextBox txtSenha;
         private Button btnNovo;
         private Button btnPesquisar;
@@ -306,5 +306,6 @@
         private GroupBox grbListaUsuario;
         private ImageList imlIcones;
         private DataGridView gdvListaUsuario;
+        private ComboBox cbxPerfil;
     }
 }

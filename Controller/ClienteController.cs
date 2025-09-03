@@ -19,9 +19,20 @@ namespace SistemaAtendimento.Controller
 
         public void ListarClientes() // método para listar os clientes
         {
-            var listaClientes = _clienteRepository.Listar(); // Chama o método Listar do repositório para obter a lista de clientes
+            //erros que ocorrem no sistema 
+            try
+            {
+                //vai testar tudo que está dentro do bloco, se der um erro aqui vai para o catch
+                var listaClientes = _clienteRepository.Listar(); // Chama o método Listar do repositório para obter a lista de clientes
+                _frmCadastroClientes.ExibirClientes(listaClientes); // Chama o método do formulário para exibir os clientes
 
-            _frmCadastroClientes.ExibirClientes(listaClientes); // Chama o método do formulário para exibir os clientes
+            }
+            catch (Exception ex) 
+            {
+                //captura o erro e exibe uma mensagem
+                _frmCadastroClientes.ExibirMensagem($"Erro ao carregar os clientes: {ex.Message}");
+            }
+            
         }
     }
 }

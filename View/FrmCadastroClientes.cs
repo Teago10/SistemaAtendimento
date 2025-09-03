@@ -36,9 +36,14 @@ namespace SistemaAtendimento
             _clienteController.ListarClientes(); // Chama o método para listar os clientes quando o formulário é carregado
         }
 
+        public void ExibirMensagem(string mensagem)
+        {
+            MessageBox.Show(mensagem); // Exibe uma mensagem em uma caixa de diálogo
+        }
+
         public void ExibirClientes(List<Clientes> clientes)
         {
-            dgvClientes.DataSource = clientes;
+            dgvClientes.DataSource = clientes; // Define a fonte de dados do DataGridView como a lista de clientes
         }
     }
 }
