@@ -20,6 +20,8 @@ namespace SistemaAtendimento.Controller
         public void ListarClientes() // método para listar os clientes
         {
             var listaClientes = _clienteRepository.Listar(); // Chama o método Listar do repositório para obter a lista de clientes
+
+            _frmCadastroClientes.ExibirClientes(listaClientes); // Chama o método do formulário para exibir os clientes
         }
     }
 }
