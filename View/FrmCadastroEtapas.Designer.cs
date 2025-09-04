@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroEtapas));
             grbListaEtapas = new GroupBox();
-            gdvListaEtapas = new DataGridView();
+            dgvListaEtapas = new DataGridView();
             lblPesquisar = new Label();
             txtPesquisar = new TextBox();
             btnEditar = new Button();
@@ -53,14 +53,14 @@
             txtCodigo = new TextBox();
             lblCodigo = new Label();
             grbListaEtapas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gdvListaEtapas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListaEtapas).BeginInit();
             grbDadosEtapa.SuspendLayout();
             pnlSituacao.SuspendLayout();
             SuspendLayout();
             // 
             // grbListaEtapas
             // 
-            grbListaEtapas.Controls.Add(gdvListaEtapas);
+            grbListaEtapas.Controls.Add(dgvListaEtapas);
             grbListaEtapas.Location = new Point(8, 253);
             grbListaEtapas.Name = "grbListaEtapas";
             grbListaEtapas.Size = new Size(784, 184);
@@ -68,13 +68,13 @@
             grbListaEtapas.TabStop = false;
             grbListaEtapas.Text = "Lista de Etapas";
             // 
-            // gdvListaEtapas
+            // dgvListaEtapas
             // 
-            gdvListaEtapas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gdvListaEtapas.Location = new Point(8, 16);
-            gdvListaEtapas.Name = "gdvListaEtapas";
-            gdvListaEtapas.Size = new Size(768, 158);
-            gdvListaEtapas.TabIndex = 12;
+            dgvListaEtapas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListaEtapas.Location = new Point(8, 16);
+            dgvListaEtapas.Name = "dgvListaEtapas";
+            dgvListaEtapas.Size = new Size(768, 158);
+            dgvListaEtapas.TabIndex = 12;
             // 
             // lblPesquisar
             // 
@@ -301,8 +301,9 @@
             Controls.Add(grbDadosEtapa);
             Name = "FrmCadastroEtapas";
             Text = "Cadastro de Etapas";
+            Load += FrmCadastroEtapas_Load;
             grbListaEtapas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gdvListaEtapas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListaEtapas).EndInit();
             grbDadosEtapa.ResumeLayout(false);
             grbDadosEtapa.PerformLayout();
             pnlSituacao.ResumeLayout(false);
@@ -314,7 +315,7 @@
         #endregion
 
         private GroupBox grbListaEtapas;
-        private DataGridView gdvListaEtapas;
+        private DataGridView dgvListaEtapas;
         private Label lblPesquisar;
         private TextBox txtPesquisar;
         private Button btnEditar;

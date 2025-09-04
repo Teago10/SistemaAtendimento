@@ -9,16 +9,14 @@ using SistemaAtendimento.Model;
 
 namespace SistemaAtendimento.Repositories
 {
-    public class UsuarioRepository
+    public class EtapaRepository
     {
-        public List<Usuarios> Listar()
+        public List<Etapas> Listar()
         {
-            var usuarios = new List<Usuarios>();
-
+            var etapas = new List<Etapas>();
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = "select * from usuarios";
-
+                string sql = "select * from etapas";
                 using (var comando = new SqlCommand(sql, conexao))
                 {
                     conexao.Open();
@@ -27,18 +25,18 @@ namespace SistemaAtendimento.Repositories
                     {
                         while (linhas.Read())
                         {
-                           usuarios.Add(new Usuarios() {
+                            etapas.Add(new Etapas()
+                            {
                                 Id = Convert.ToInt32(linhas["id"]),
                                 Nome = linhas["nome"].ToString(),
-                                Email = linhas["email"].ToString(),
-                                Senha = linhas["senha"].ToString(),
-                                Perfil = linhas["perfil"].ToString()
+                                ordem = Convert.ToInt32(linhas["ordem"]),
+                                Ativo = Convert.ToBoolean(linhas["ativo"])
                             });
                         }
                     }
                 }
             }
-            return usuarios;
+            return etapas;
         }
     }
 }

@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroUsuario));
             grbDadosUsuario = new GroupBox();
+            cbxPerfil = new ComboBox();
             lblPerfil = new Label();
             lblSenha = new Label();
             txtSenha = new TextBox();
@@ -48,11 +49,10 @@
             txtPesquisar = new TextBox();
             lblPesquisar = new Label();
             grbListaUsuario = new GroupBox();
-            gdvListaUsuario = new DataGridView();
-            cbxPerfil = new ComboBox();
+            dgvListaUsuario = new DataGridView();
             grbDadosUsuario.SuspendLayout();
             grbListaUsuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gdvListaUsuario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListaUsuario).BeginInit();
             SuspendLayout();
             // 
             // grbDadosUsuario
@@ -71,6 +71,14 @@
             grbDadosUsuario.TabIndex = 0;
             grbDadosUsuario.TabStop = false;
             grbDadosUsuario.Text = "Dados do Usuário";
+            // 
+            // cbxPerfil
+            // 
+            cbxPerfil.FormattingEnabled = true;
+            cbxPerfil.Location = new Point(248, 95);
+            cbxPerfil.Name = "cbxPerfil";
+            cbxPerfil.Size = new Size(200, 23);
+            cbxPerfil.TabIndex = 8;
             // 
             // lblPerfil
             // 
@@ -236,7 +244,7 @@
             // 
             // grbListaUsuario
             // 
-            grbListaUsuario.Controls.Add(gdvListaUsuario);
+            grbListaUsuario.Controls.Add(dgvListaUsuario);
             grbListaUsuario.Location = new Point(8, 248);
             grbListaUsuario.Name = "grbListaUsuario";
             grbListaUsuario.Size = new Size(784, 184);
@@ -244,21 +252,13 @@
             grbListaUsuario.TabStop = false;
             grbListaUsuario.Text = "Lista de Usuários";
             // 
-            // gdvListaUsuario
+            // dgvListaUsuario
             // 
-            gdvListaUsuario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gdvListaUsuario.Location = new Point(8, 16);
-            gdvListaUsuario.Name = "gdvListaUsuario";
-            gdvListaUsuario.Size = new Size(768, 158);
-            gdvListaUsuario.TabIndex = 12;
-            // 
-            // cbxPerfil
-            // 
-            cbxPerfil.FormattingEnabled = true;
-            cbxPerfil.Location = new Point(248, 95);
-            cbxPerfil.Name = "cbxPerfil";
-            cbxPerfil.Size = new Size(200, 23);
-            cbxPerfil.TabIndex = 8;
+            dgvListaUsuario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListaUsuario.Location = new Point(8, 16);
+            dgvListaUsuario.Name = "dgvListaUsuario";
+            dgvListaUsuario.Size = new Size(768, 158);
+            dgvListaUsuario.TabIndex = 12;
             // 
             // FrmCadastroUsuario
             // 
@@ -277,10 +277,11 @@
             Controls.Add(grbDadosUsuario);
             Name = "FrmCadastroUsuario";
             Text = "FrmCadastroUsuario";
+            Load += FrmCadastroUsuario_Load;
             grbDadosUsuario.ResumeLayout(false);
             grbDadosUsuario.PerformLayout();
             grbListaUsuario.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gdvListaUsuario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListaUsuario).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -305,7 +306,7 @@
         private Label lblPesquisar;
         private GroupBox grbListaUsuario;
         private ImageList imlIcones;
-        private DataGridView gdvListaUsuario;
+        private DataGridView dgvListaUsuario;
         private ComboBox cbxPerfil;
     }
 }
