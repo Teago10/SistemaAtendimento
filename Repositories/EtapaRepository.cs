@@ -29,7 +29,7 @@ namespace SistemaAtendimento.Repositories
                             {
                                 Id = Convert.ToInt32(linhas["id"]),
                                 Nome = linhas["nome"].ToString(),
-                                ordem = Convert.ToInt32(linhas["ordem"]),
+                                Ordem = Convert.ToInt32(linhas["ordem"]),
                                 Ativo = Convert.ToBoolean(linhas["ativo"])
                             });
                         }
@@ -37,6 +37,23 @@ namespace SistemaAtendimento.Repositories
                 }
             }
             return etapas;
+        }
+
+        public void Inserir(Etapas etapas)
+        {
+            using (var conexao = ConexaoDB.GetConexao())
+            {
+                string sql = "insert into etapas (nome, ordem, ativo) values (@nome, @ordem, @ativo)";
+                using (var comando = new SqlCommand(sql, conexao))
+                {
+                    comando.Parameters.AddWithValue("@nome", etapas.Nome);
+                    comando.Parameters.AddWithValue("@ordem", etapas.Ordem);
+                    comando.Parameters.AddWithValue("@ativo", etapas.Ativo);
+
+                    conexao.Open();
+                    comando.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

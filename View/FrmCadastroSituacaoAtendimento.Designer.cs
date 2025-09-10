@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroStatusAtendimento));
             grbListaSituacoesAtendimento = new GroupBox();
-            gdvListaEtapas = new DataGridView();
+            dgvSituacaoAtendimento = new DataGridView();
             lblPesquisar = new Label();
             txtPesquisar = new TextBox();
             btnEditar = new Button();
@@ -53,14 +53,14 @@
             txtCodigo = new TextBox();
             lblCodigo = new Label();
             grbListaSituacoesAtendimento.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gdvListaEtapas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSituacaoAtendimento).BeginInit();
             grbDadosSituacaoAtendimento.SuspendLayout();
             pnlSituacao.SuspendLayout();
             SuspendLayout();
             // 
             // grbListaSituacoesAtendimento
             // 
-            grbListaSituacoesAtendimento.Controls.Add(gdvListaEtapas);
+            grbListaSituacoesAtendimento.Controls.Add(dgvSituacaoAtendimento);
             grbListaSituacoesAtendimento.Location = new Point(8, 253);
             grbListaSituacoesAtendimento.Name = "grbListaSituacoesAtendimento";
             grbListaSituacoesAtendimento.Size = new Size(784, 184);
@@ -68,13 +68,13 @@
             grbListaSituacoesAtendimento.TabStop = false;
             grbListaSituacoesAtendimento.Text = "Lista de Situações do Atendimento";
             // 
-            // gdvListaEtapas
+            // dgvSituacaoAtendimento
             // 
-            gdvListaEtapas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gdvListaEtapas.Location = new Point(8, 16);
-            gdvListaEtapas.Name = "gdvListaEtapas";
-            gdvListaEtapas.Size = new Size(768, 158);
-            gdvListaEtapas.TabIndex = 12;
+            dgvSituacaoAtendimento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSituacaoAtendimento.Location = new Point(8, 16);
+            dgvSituacaoAtendimento.Name = "dgvSituacaoAtendimento";
+            dgvSituacaoAtendimento.Size = new Size(768, 158);
+            dgvSituacaoAtendimento.TabIndex = 12;
             // 
             // lblPesquisar
             // 
@@ -301,8 +301,9 @@
             Controls.Add(grbDadosSituacaoAtendimento);
             Name = "FrmCadastroStatusAtendimento";
             Text = "Cadastro de Status de Atendimento";
+            Load += FrmCadastroStatusAtendimento_Load;
             grbListaSituacoesAtendimento.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gdvListaEtapas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSituacaoAtendimento).EndInit();
             grbDadosSituacaoAtendimento.ResumeLayout(false);
             grbDadosSituacaoAtendimento.PerformLayout();
             pnlSituacao.ResumeLayout(false);
@@ -314,7 +315,7 @@
         #endregion
 
         private GroupBox grbListaSituacoesAtendimento;
-        private DataGridView gdvListaEtapas;
+        private DataGridView dgvSituacaoAtendimento;
         private Label lblPesquisar;
         private TextBox txtPesquisar;
         private Button btnEditar;
