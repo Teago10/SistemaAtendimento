@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaAtendimento.Model;
 using SistemaAtendimento.Repositories;
 using SistemaAtendimento.View;
 
@@ -29,6 +30,20 @@ namespace SistemaAtendimento.Controller
             catch (Exception ex)
             {
                 _frmCadastroEtapas.ExibirMensagem($"Erro ao listar etapas: {ex.Message}");
+            }
+        }
+        public void Salvar(Etapas etapa)
+        {
+            try
+            {
+                _etapaRepository.Inserir(etapa);
+                _frmCadastroEtapas.ExibirMensagem("Etapa cadastrada com sucesso!");
+
+                ListarEtapas(); // Atualiza a lista de etapas após a inserção
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroEtapas.ExibirMensagem($"Erro ao cadastrar a etapa: {ex.Message}");
             }
         }
     }

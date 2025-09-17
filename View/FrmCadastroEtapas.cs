@@ -31,9 +31,41 @@ namespace SistemaAtendimento.View
             MessageBox.Show(mensagem);
         }
 
-        public void ExibirEtapas(List<Etapas> etapas) 
+        public void ExibirEtapas(List<Etapas> etapas)
         {
             dgvListaEtapas.DataSource = etapas;
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            var etapa = new Etapas
+            {
+                Nome = txtNome.Text,
+                Ordem = Convert.ToInt32(txtSenha.Text),
+                Ativo = rdbAtivo.Checked
+            };
+            if(!ValidarDados(etapa))
+                return;
+            
+            _etapaController.Salvar(etapa);
+        }
+
+        public bool ValidarDados(Etapas etapa)
+        {
+            if(string.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                ExibirMensagem("O campo Nome é obrigatório.");
+                txtNome.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtSenha.Text))
+            {
+                ExibirMensagem("O campo Senha é obrigatório.");
+                txtSenha.Focus();
+                return false;
+            }
+            
+            return true;
         }
     }
 }
