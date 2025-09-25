@@ -40,10 +40,28 @@ namespace SistemaAtendimento.Controller
                 _frmCadastroEtapas.ExibirMensagem("Etapa cadastrada com sucesso!");
 
                 ListarEtapas(); // Atualiza a lista de etapas após a inserção
+                _frmCadastroEtapas.DesabilitarCampos(); // desabilita os campos após salvar
             }
             catch (Exception ex)
             {
                 _frmCadastroEtapas.ExibirMensagem($"Erro ao cadastrar a etapa: {ex.Message}");
+            }
+        }
+
+        public void Atualizar(Etapas etapa)
+        {
+            try
+            {
+                // Implementar a lógica de atualização aqui
+                _etapaRepository.Atualizar(etapa);
+                _frmCadastroEtapas.ExibirMensagem("Etapa atualizada com sucesso!");
+                ListarEtapas(); // Atualiza a lista de etapas após a atualização
+
+                _frmCadastroEtapas.DesabilitarCampos(); // desabilita os campos após salvar
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroEtapas.ExibirMensagem($"Erro ao atualizar a etapa: {ex.Message}");
             }
         }
     }

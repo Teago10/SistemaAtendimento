@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroUsuario));
             grbDadosUsuario = new GroupBox();
+            lblEmail = new Label();
+            txtEmail = new TextBox();
             cbxPerfil = new ComboBox();
             lblPerfil = new Label();
             lblSenha = new Label();
@@ -57,6 +59,8 @@
             // 
             // grbDadosUsuario
             // 
+            grbDadosUsuario.Controls.Add(lblEmail);
+            grbDadosUsuario.Controls.Add(txtEmail);
             grbDadosUsuario.Controls.Add(cbxPerfil);
             grbDadosUsuario.Controls.Add(lblPerfil);
             grbDadosUsuario.Controls.Add(lblSenha);
@@ -72,8 +76,26 @@
             grbDadosUsuario.TabStop = false;
             grbDadosUsuario.Text = "Dados do Usuário";
             // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(480, 79);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(36, 15);
+            lblEmail.TabIndex = 10;
+            lblEmail.Text = "Email";
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(472, 94);
+            txtEmail.Name = "txtEmail";
+            txtEmail.ReadOnly = true;
+            txtEmail.Size = new Size(240, 23);
+            txtEmail.TabIndex = 9;
+            // 
             // cbxPerfil
             // 
+            cbxPerfil.Enabled = false;
             cbxPerfil.FormattingEnabled = true;
             cbxPerfil.Location = new Point(248, 95);
             cbxPerfil.Name = "cbxPerfil";
@@ -102,6 +124,7 @@
             // 
             txtSenha.Location = new Point(8, 96);
             txtSenha.Name = "txtSenha";
+            txtSenha.ReadOnly = true;
             txtSenha.Size = new Size(216, 23);
             txtSenha.TabIndex = 3;
             // 
@@ -118,6 +141,7 @@
             // 
             txtNome.Location = new Point(192, 40);
             txtNome.Name = "txtNome";
+            txtNome.ReadOnly = true;
             txtNome.Size = new Size(584, 23);
             txtNome.TabIndex = 2;
             // 
@@ -125,6 +149,7 @@
             // 
             txtCodigo.Location = new Point(8, 40);
             txtCodigo.Name = "txtCodigo";
+            txtCodigo.ReadOnly = true;
             txtCodigo.Size = new Size(152, 23);
             txtCodigo.TabIndex = 1;
             // 
@@ -150,6 +175,7 @@
             btnNovo.Text = "Novo";
             btnNovo.TextAlign = ContentAlignment.MiddleRight;
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
             // 
             // imlIcones
             // 
@@ -176,6 +202,7 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.Enabled = false;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.ImageIndex = 6;
             btnCancelar.ImageList = imlIcones;
@@ -186,9 +213,11 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnExcluir
             // 
+            btnExcluir.Enabled = false;
             btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
             btnExcluir.ImageIndex = 2;
             btnExcluir.ImageList = imlIcones;
@@ -199,9 +228,11 @@
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnSalvar
             // 
+            btnSalvar.Enabled = false;
             btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
             btnSalvar.ImageIndex = 5;
             btnSalvar.ImageList = imlIcones;
@@ -212,9 +243,11 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnEditar
             // 
+            btnEditar.Enabled = false;
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditar.ImageIndex = 1;
             btnEditar.ImageList = imlIcones;
@@ -225,6 +258,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // txtPesquisar
             // 
@@ -259,6 +293,7 @@
             dgvListaUsuario.Name = "dgvListaUsuario";
             dgvListaUsuario.Size = new Size(768, 158);
             dgvListaUsuario.TabIndex = 12;
+            dgvListaUsuario.CellDoubleClick += dgvListaUsuario_CellDoubleClick;
             // 
             // FrmCadastroUsuario
             // 
@@ -308,5 +343,7 @@
         private ImageList imlIcones;
         private DataGridView dgvListaUsuario;
         private ComboBox cbxPerfil;
+        private Label lblEmail;
+        private TextBox txtEmail;
     }
 }

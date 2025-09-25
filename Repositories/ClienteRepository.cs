@@ -87,5 +87,51 @@ namespace SistemaAtendimento.Repositories
                 }
             }
         }
+
+        public void Atualizar(Clientes cliente) // método para atualizar um cliente existente no banco de dados
+        {
+            using (var conexao = ConexaoDB.GetConexao())
+            {
+                string sql = "update clientes set nome = @nome, email = @email, cpf_cnpj = @cpf_cnpj," +
+                    " tipo_pessoa = @tipo_pessoa, telefone = @telefone, celular = @celular, cep = @cep," +
+                    " endereco = @endereco, numero = @numero, complemento = @complemento, bairro = @bairro," +
+                    " cidade = @cidade, estado = @estado, ativo = @ativo where id = @id";
+
+                using (var comando = new SqlCommand(sql, conexao))
+                {
+                    comando.Parameters.AddWithValue("@id", cliente.Id);
+                    comando.Parameters.AddWithValue("@nome", cliente.Nome);
+                    comando.Parameters.AddWithValue("@email", cliente.Email);
+                    comando.Parameters.AddWithValue("@cpf_cnpj", cliente.Cpf_Cnpj);
+                    comando.Parameters.AddWithValue("@tipo_pessoa", cliente.TipoPessoa);
+                    comando.Parameters.AddWithValue("@telefone", cliente.Telefone);
+                    comando.Parameters.AddWithValue("@celular", cliente.Celular);
+                    comando.Parameters.AddWithValue("@cep", cliente.Cep);
+                    comando.Parameters.AddWithValue("@endereco", cliente.Endereco);
+                    comando.Parameters.AddWithValue("@numero", cliente.Numero);
+                    comando.Parameters.AddWithValue("@complemento", cliente.Complemento);
+                    comando.Parameters.AddWithValue("@bairro", cliente.Bairro);
+                    comando.Parameters.AddWithValue("@cidade", cliente.Cidade);
+                    comando.Parameters.AddWithValue("@estado", cliente.Estado);
+                    comando.Parameters.AddWithValue("@ativo", cliente.Ativo);
+                    conexao.Open();
+                    comando.ExecuteNonQuery(); // Executa o comando SQL sem retornar resultados
+                }
+            }
+        }
+
+        public void Excluir(int id) // método para excluir um cliente do banco de dados
+        {
+            using (var conexao = ConexaoDB.GetConexao())
+            {
+                string sql = "delete from clientes where id = @id";
+                using (var comando = new SqlCommand(sql, conexao))
+                {
+                    comando.Parameters.AddWithValue("@id", id);
+                    conexao.Open();
+                    comando.ExecuteNonQuery(); // Executa o comando SQL sem retornar resultados
+                }
+            }
+        }
     }
 }

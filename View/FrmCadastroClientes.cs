@@ -69,7 +69,17 @@ namespace SistemaAtendimento
             if (!ValidarDados(cliente)) // valida os dados do cliente
                 return; // se os dados não forem válidos, retorna sem salvar
 
-            _clienteController.Salvar(cliente); // Chama o método para salvar o cliente, puxa do controller
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text)) // se o campo Código estiver vazio, é um novo cliente
+            {
+                _clienteController.Salvar(cliente); // Chama o método para salvar o cliente, puxa do controller
+            }
+            else
+            {
+                // cliente.Id vai receber(=) o valor convertido do campo txtCodigo
+                cliente.Id = Convert.ToInt32(txtCodigo.Text);
+
+                _clienteController.Atualizar(cliente); // Chama o método para atualizar o cliente
+            }
 
 
         }
@@ -203,10 +213,9 @@ namespace SistemaAtendimento
             txtBairro.ReadOnly = false;
             txtCidade.ReadOnly = false;
             cbxEstado.Enabled = true;
-            rdbAtivo.Enabled = true;
-            rdbInativo.Enabled = true;
-            rdbFisica.Enabled = true;
-            rdbJuridica.Enabled = true;
+            pnlSituacao.Enabled = true;
+            pnlTipoPessoa.Enabled = true;
+
 
             btnCancelar.Enabled = true;
             btnSalvar.Enabled = true;
@@ -227,13 +236,12 @@ namespace SistemaAtendimento
             txtBairro.ReadOnly = true;
             txtCidade.ReadOnly = true;
             cbxEstado.Enabled = false;
-            rdbAtivo.Enabled = true;
-            rdbInativo.Enabled = true;
-            rdbFisica.Enabled = true;
-            rdbJuridica.Enabled = true;
+            pnlSituacao.Enabled = false;
+            pnlTipoPessoa.Enabled = false;
 
-            btnExcluir.Enabled = true;
-            btnEditar.Enabled = true;
+
+            btnExcluir.Enabled = false;
+            btnEditar.Enabled = false;
             btnCancelar.Enabled = false;
             btnSalvar.Enabled = false;
             btnNovo.Enabled = true;
@@ -253,7 +261,9 @@ namespace SistemaAtendimento
             txtBairro.Clear();
             txtCidade.Clear();
             rdbFisica.Checked = true;
+            rdbJuridica.Checked = false;
             rdbAtivo.Checked = true;
+            rdbInativo.Checked = false;
             cbxEstado.Text = ""; // limpa a seleção do ComboBox. Empty é uma string vazia
 
 
@@ -268,6 +278,81 @@ namespace SistemaAtendimento
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             DesabilitarCampos();
+        }
+
+        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow linhaSelecionada = dgvClientes.Rows[e.RowIndex];
+
+                txtCodigo.Text = linhaSelecionada.Cells["Id"].Value.ToString();
+                txtNome.Text = linhaSelecionada.Cells["Nome"].Value.ToString();
+                txtEmail.Text = linhaSelecionada.Cells["Email"].Value.ToString();
+                txtCpfCnpj.Text = linhaSelecionada.Cells["Cpf_Cnpj"].Value.ToString();
+                /*
+                if (linhaSelecionada.Cells["TipoPessoa"].Value.ToString() == "F")
+                    rdbFisica.Checked = true;
+                else
+                    rdbJuridica.Checked = true;*/
+
+                // Simplificação do código acima
+                rdbFisica.Checked = linhaSelecionada.Cells["TipoPessoa"].Value.ToString() == "F";
+                rdbJuridica.Checked = linhaSelecionada.Cells["TipoPessoa"].Value.ToString() == "J";
+                txtTelefone.Text = linhaSelecionada.Cells["Telefone"].Value.ToString();
+                txtCelular.Text = linhaSelecionada.Cells["Celular"].Value.ToString();
+                txtCep.Text = linhaSelecionada.Cells["Cep"].Value.ToString();
+                txtEndereco.Text = linhaSelecionada.Cells["Endereco"].Value.ToString();
+                txtNumero.Text = linhaSelecionada.Cells["Numero"].Value.ToString();
+                txtComplemento.Text = linhaSelecionada.Cells["Complemento"].Value.ToString();
+                txtBairro.Text = linhaSelecionada.Cells["Bairro"].Value.ToString();
+                txtCidade.Text = linhaSelecionada.Cells["Cidade"].Value.ToString();
+                cbxEstado.Text = linhaSelecionada.Cells["Estado"].Value.ToString();
+                /*
+                if (Convert.ToBoolean(linhaSelecionada.Cells["Ativo"].Value))
+                    rdbAtivo.Checked = true;
+                else
+                    rdbInativo.Checked = true;
+                */
+
+                // Simplificação do código acima
+                rdbAtivo.Checked = Convert.ToBoolean(linhaSelecionada.Cells["Ativo"].Value);
+                rdbInativo.Checked = !Convert.ToBoolean(linhaSelecionada.Cells["Ativo"].Value);
+
+                btnEditar.Enabled = true;
+                btnNovo.Enabled = false;
+                btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            HabilitarCampos();
+            btnEditar.Enabled = false;
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(txtCodigo.Text))
+            {
+                ExibirMensagem("Nenhum cliente selecionado para exclusão.");
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show("Deseja Excluir o Cliente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // (refere-se a linha de cima) pergunta se o usuário tem certeza que quer excluir o cliente
+            if (resultado == DialogResult.Yes) 
+            { 
+                int id = Convert.ToInt32(txtCodigo.Text);
+                _clienteController.Excluir(id); // chama o método para excluir o cliente
+            }
+
+        }
+
+        private void rdbAtivo_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

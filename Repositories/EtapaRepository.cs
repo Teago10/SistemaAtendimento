@@ -55,5 +55,24 @@ namespace SistemaAtendimento.Repositories
                 }
             }
         }
+
+        public void Atualizar(Etapas etapa)
+        {
+            using (var conexao = ConexaoDB.GetConexao())
+            {
+                string sql = "update etapas set nome = @nome, ordem = @ordem, ativo = @ativo where id = @id";
+
+                using (var comando = new SqlCommand(sql, conexao))
+                {
+                    comando.Parameters.AddWithValue("@nome", etapa.Nome);
+                    comando.Parameters.AddWithValue("@ordem", etapa.Ordem);
+                    comando.Parameters.AddWithValue("@ativo", etapa.Ativo);
+                    comando.Parameters.AddWithValue("@id", etapa.Id);
+
+                    conexao.Open();
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

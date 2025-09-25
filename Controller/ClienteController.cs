@@ -53,5 +53,36 @@ namespace SistemaAtendimento.Controller
                 _frmCadastroClientes.ExibirMensagem($"Erro ao Cadastrar o cliente: {ex.Message}");
             }
         }
+
+        public void Atualizar(Clientes cliente) // método para atualizar um cliente existente
+        {
+            try
+            {
+                _clienteRepository.Atualizar(cliente);
+                _frmCadastroClientes.ExibirMensagem("Cliente atualizado com sucesso!");
+                ListarClientes(); // Atualiza a lista de clientes após a atualização
+
+                _frmCadastroClientes.DesabilitarCampos(); // desabilita os campos após salvar   
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroClientes.ExibirMensagem($"Erro ao atualizar o cliente: {ex.Message}");
+            }
+        }
+
+        public void Excluir(int id)
+        {
+            try
+            {
+                _clienteRepository.Excluir(id);
+                _frmCadastroClientes.ExibirMensagem("Cliente excluído com sucesso!");
+                ListarClientes();
+                _frmCadastroClientes.DesabilitarCampos(); // desabilita os campos após salvar
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroClientes.ExibirMensagem($"Erro ao excluir o cliente: {ex.Message}");
+            }
+        }
     }
 }

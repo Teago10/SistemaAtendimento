@@ -126,6 +126,7 @@
             // 
             // cbxEstado
             // 
+            cbxEstado.Enabled = false;
             cbxEstado.FormattingEnabled = true;
             cbxEstado.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
             cbxEstado.Location = new Point(9, 264);
@@ -146,6 +147,7 @@
             // 
             pnlSituacao.Controls.Add(rdbInativo);
             pnlSituacao.Controls.Add(rdbAtivo);
+            pnlSituacao.Enabled = false;
             pnlSituacao.Location = new Point(147, 262);
             pnlSituacao.Name = "pnlSituacao";
             pnlSituacao.Size = new Size(144, 28);
@@ -172,6 +174,7 @@
             rdbAtivo.TabStop = true;
             rdbAtivo.Text = "Ativo";
             rdbAtivo.UseVisualStyleBackColor = true;
+            rdbAtivo.CheckedChanged += rdbAtivo_CheckedChanged;
             // 
             // lblSituacao
             // 
@@ -305,6 +308,7 @@
             // 
             pnlTipoPessoa.Controls.Add(rdbJuridica);
             pnlTipoPessoa.Controls.Add(rdbFisica);
+            pnlTipoPessoa.Enabled = false;
             pnlTipoPessoa.Location = new Point(295, 102);
             pnlTipoPessoa.Name = "pnlTipoPessoa";
             pnlTipoPessoa.Size = new Size(144, 34);
@@ -469,6 +473,7 @@
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnEditar
             // 
@@ -483,6 +488,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnNovo
             // 
@@ -554,9 +560,13 @@
             // 
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientes.Location = new Point(8, 16);
+            dgvClientes.MultiSelect = false;
             dgvClientes.Name = "dgvClientes";
+            dgvClientes.ReadOnly = true;
+            dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.Size = new Size(704, 192);
             dgvClientes.TabIndex = 0;
+            dgvClientes.CellDoubleClick += dgvClientes_CellDoubleClick;
             // 
             // FrmCadastroClientes
             // 

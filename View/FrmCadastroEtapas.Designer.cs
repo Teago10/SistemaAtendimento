@@ -46,8 +46,8 @@
             rdbInativo = new RadioButton();
             rdbAtivo = new RadioButton();
             lblSituacao = new Label();
-            lblSenha = new Label();
-            txtSenha = new TextBox();
+            lblOrdem = new Label();
+            txtOrdem = new TextBox();
             lblNome = new Label();
             txtNome = new TextBox();
             txtCodigo = new TextBox();
@@ -72,9 +72,13 @@
             // 
             dgvListaEtapas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListaEtapas.Location = new Point(8, 16);
+            dgvListaEtapas.MultiSelect = false;
             dgvListaEtapas.Name = "dgvListaEtapas";
+            dgvListaEtapas.ReadOnly = true;
+            dgvListaEtapas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvListaEtapas.Size = new Size(768, 158);
             dgvListaEtapas.TabIndex = 12;
+            dgvListaEtapas.CellDoubleClick += dgvListaEtapas_CellDoubleClick;
             // 
             // lblPesquisar
             // 
@@ -94,6 +98,7 @@
             // 
             // btnEditar
             // 
+            btnEditar.Enabled = false;
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditar.ImageIndex = 1;
             btnEditar.ImageList = imlIcones;
@@ -104,6 +109,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // imlIcones
             // 
@@ -119,6 +125,7 @@
             // 
             // btnSalvar
             // 
+            btnSalvar.Enabled = false;
             btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
             btnSalvar.ImageIndex = 5;
             btnSalvar.ImageList = imlIcones;
@@ -133,6 +140,7 @@
             // 
             // btnExcluir
             // 
+            btnExcluir.Enabled = false;
             btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
             btnExcluir.ImageIndex = 2;
             btnExcluir.ImageList = imlIcones;
@@ -143,9 +151,11 @@
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnCancelar
             // 
+            btnCancelar.Enabled = false;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.ImageIndex = 5;
             btnCancelar.ImageList = imlIcones;
@@ -156,6 +166,7 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnPesquisar
             // 
@@ -179,13 +190,14 @@
             btnNovo.Text = "Novo";
             btnNovo.TextAlign = ContentAlignment.MiddleRight;
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
             // 
             // grbDadosEtapa
             // 
             grbDadosEtapa.Controls.Add(pnlSituacao);
             grbDadosEtapa.Controls.Add(lblSituacao);
-            grbDadosEtapa.Controls.Add(lblSenha);
-            grbDadosEtapa.Controls.Add(txtSenha);
+            grbDadosEtapa.Controls.Add(lblOrdem);
+            grbDadosEtapa.Controls.Add(txtOrdem);
             grbDadosEtapa.Controls.Add(lblNome);
             grbDadosEtapa.Controls.Add(txtNome);
             grbDadosEtapa.Controls.Add(txtCodigo);
@@ -201,6 +213,7 @@
             // 
             pnlSituacao.Controls.Add(rdbInativo);
             pnlSituacao.Controls.Add(rdbAtivo);
+            pnlSituacao.Enabled = false;
             pnlSituacao.Location = new Point(272, 88);
             pnlSituacao.Name = "pnlSituacao";
             pnlSituacao.Size = new Size(144, 32);
@@ -213,13 +226,13 @@
             rdbInativo.Name = "rdbInativo";
             rdbInativo.Size = new Size(61, 19);
             rdbInativo.TabIndex = 1;
-            rdbInativo.TabStop = true;
             rdbInativo.Text = "Inativo";
             rdbInativo.UseVisualStyleBackColor = true;
             // 
             // rdbAtivo
             // 
             rdbAtivo.AutoSize = true;
+            rdbAtivo.Checked = true;
             rdbAtivo.Location = new Point(8, 8);
             rdbAtivo.Name = "rdbAtivo";
             rdbAtivo.Size = new Size(53, 19);
@@ -227,6 +240,7 @@
             rdbAtivo.TabStop = true;
             rdbAtivo.Text = "Ativo";
             rdbAtivo.UseVisualStyleBackColor = true;
+            rdbAtivo.CheckedChanged += rdbAtivo_CheckedChanged;
             // 
             // lblSituacao
             // 
@@ -237,21 +251,22 @@
             lblSituacao.TabIndex = 12;
             lblSituacao.Text = "Situação";
             // 
-            // lblSenha
+            // lblOrdem
             // 
-            lblSenha.AutoSize = true;
-            lblSenha.Location = new Point(16, 80);
-            lblSenha.Name = "lblSenha";
-            lblSenha.Size = new Size(39, 15);
-            lblSenha.TabIndex = 6;
-            lblSenha.Text = "Senha";
+            lblOrdem.AutoSize = true;
+            lblOrdem.Location = new Point(16, 80);
+            lblOrdem.Name = "lblOrdem";
+            lblOrdem.Size = new Size(44, 15);
+            lblOrdem.TabIndex = 6;
+            lblOrdem.Text = "Ordem";
             // 
-            // txtSenha
+            // txtOrdem
             // 
-            txtSenha.Location = new Point(8, 96);
-            txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(216, 23);
-            txtSenha.TabIndex = 3;
+            txtOrdem.Location = new Point(8, 96);
+            txtOrdem.Name = "txtOrdem";
+            txtOrdem.ReadOnly = true;
+            txtOrdem.Size = new Size(216, 23);
+            txtOrdem.TabIndex = 3;
             // 
             // lblNome
             // 
@@ -266,6 +281,7 @@
             // 
             txtNome.Location = new Point(192, 40);
             txtNome.Name = "txtNome";
+            txtNome.ReadOnly = true;
             txtNome.Size = new Size(584, 23);
             txtNome.TabIndex = 2;
             // 
@@ -273,6 +289,7 @@
             // 
             txtCodigo.Location = new Point(8, 40);
             txtCodigo.Name = "txtCodigo";
+            txtCodigo.ReadOnly = true;
             txtCodigo.Size = new Size(152, 23);
             txtCodigo.TabIndex = 1;
             // 
@@ -326,8 +343,8 @@
         private Button btnPesquisar;
         private Button btnNovo;
         private GroupBox grbDadosEtapa;
-        private Label lblSenha;
-        private TextBox txtSenha;
+        private Label lblOrdem;
+        private TextBox txtOrdem;
         private Label lblNome;
         private TextBox txtNome;
         private TextBox txtCodigo;
