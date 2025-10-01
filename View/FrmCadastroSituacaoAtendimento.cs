@@ -77,7 +77,7 @@ namespace SistemaAtendimento.View
         {
             txtNome.ReadOnly = false;
             txtCor.ReadOnly = false;
-            pnlSituacao.Enabled = false;
+            pnlSituacao.Enabled = true;
 
             btnSalvar.Enabled = true;
             btnCancelar.Enabled = true;

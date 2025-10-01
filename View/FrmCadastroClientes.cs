@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using SistemaAtendimento.Controller;
 using SistemaAtendimento.Model;
 
@@ -334,7 +336,7 @@ namespace SistemaAtendimento
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtCodigo.Text))
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
                 ExibirMensagem("Nenhum cliente selecionado para exclusão.");
                 return;
@@ -342,8 +344,8 @@ namespace SistemaAtendimento
 
             DialogResult resultado = MessageBox.Show("Deseja Excluir o Cliente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             // (refere-se a linha de cima) pergunta se o usuário tem certeza que quer excluir o cliente
-            if (resultado == DialogResult.Yes) 
-            { 
+            if (resultado == DialogResult.Yes)
+            {
                 int id = Convert.ToInt32(txtCodigo.Text);
                 _clienteController.Excluir(id); // chama o método para excluir o cliente
             }
@@ -353,6 +355,50 @@ namespace SistemaAtendimento
         private void rdbAtivo_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // async - aguarda a resposta de uma requisição, Task - tarefa que será executada de forma assíncrona
+        private async Task BuscarEnderecoPorCep(string cep)
+        {
+            try
+            {
+                cep = cep.Replace("-", "").Trim(); // remove qualquer traço do CEP
+
+                using (HttpClient client = new HttpClient()) // cria uma instância do HttpClient para fazer requisições HTTP
+                {
+                    string url = $"https://viacep.com.br/ws/{cep}/json/"; // URL da API do ViaCEP
+
+                    var response = await client.GetAsync(url); // aguarda a resposta da requisição
+
+
+                    if (response.IsSuccessStatusCode) // se a resposta for bem-sucedida
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+
+                        dynamic? dadosEndereco = JsonConvert.DeserializeObject(json);
+
+                        txtEndereco.Text = dadosEndereco?.logradouro;
+                        txtBairro.Text = dadosEndereco?.bairro;
+                        txtCidade.Text = dadosEndereco?.localidade;
+                        cbxEstado.Text = dadosEndereco?.uf;
+
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExibirMensagem($"Erro ao buscar o endereço: {ex.Message}");
+            }
+        }
+
+        // Task ou void - método assíncrono que não retorna valor
+        private async Task txtCep_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCep.Text)) // se o campo CEP não estiver vazio
+            {
+                await BuscarEnderecoPorCep(txtCep.Text); // chama o método para buscar o endereço pelo CEP
+            }
         }
     }
 }
