@@ -66,5 +66,11 @@ namespace SistemaAtendimento
             FrmAtendimento frmAtendimento = new FrmAtendimento();
             frmAtendimento.ShowDialog(); // abre o formulário como uma janela modal
         }
+
+        private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConsultaAtendimento _frmConsultaAtendimento = new FrmConsultaAtendimento();
+            _frmConsultaAtendimento.ShowDialog();
+        }
     }
 }
