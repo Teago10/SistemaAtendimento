@@ -277,6 +277,7 @@
             txtCep.ReadOnly = true;
             txtCep.Size = new Size(129, 23);
             txtCep.TabIndex = 7;
+            txtCep.Leave += txtCep_Leave_1;
             // 
             // lblCep
             // 
@@ -545,6 +546,7 @@
             btnPesquisar.TabIndex = 21;
             btnPesquisar.TextAlign = ContentAlignment.MiddleRight;
             btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
             // 
             // grbListaClientes
             // 

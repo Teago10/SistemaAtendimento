@@ -12,7 +12,7 @@ namespace SistemaAtendimento.Repositories
     public class ClienteRepository 
     {
         // quero que retorne uma lista de clientes
-        public List<Clientes> Listar() 
+        public List<Clientes> Listar(string termo = "") 
         {
             var clientes = new List<Clientes>(); // Cria uma lista para armazenar os clientes
 
@@ -20,8 +20,18 @@ namespace SistemaAtendimento.Repositories
             {
                 string sql = "select * from clientes"; // comando sql que vc quer executar no banco de dados
 
+                // se o termo não for vazio, então altera o comando sql para buscar pelo nome ou email. Para o campo de busca
+                if (!string.IsNullOrEmpty(termo))
+                {
+                    sql = "select * from clientes where nome LIKE @termo or email LIKE @termo";
+                }
+
                 using (var comando = new SqlCommand(sql, conexao)) // comando que vc quer se seja executado no sql
                 {
+                    if (!string.IsNullOrEmpty(termo)) // se o termo não for vazio, então adiciona o parâmetro @termo ao comando sql. Para o campo de busca
+                    {
+                        comando.Parameters.AddWithValue("@termo", "%"+termo+"%");
+                    }
                     conexao.Open(); // abre a conexão com o banco de dados
 
                     using (var linhas = comando.ExecuteReader())// vai executar e trazer todas as linhas de registro

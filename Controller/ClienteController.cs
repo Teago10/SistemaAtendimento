@@ -18,13 +18,13 @@ namespace SistemaAtendimento.Controller
             _clienteRepository = new ClienteRepository(); // inicializa o repositório de clientes
         }
 
-        public void ListarClientes() // método para listar os clientes
+        public void ListarClientes(string termo = "") // método para listar os clientes
         {
             //erros que ocorrem no sistema 
             try
             {
                 //vai testar tudo que está dentro do bloco, se der um erro aqui vai para o catch
-                var listaClientes = _clienteRepository.Listar(); // Chama o método Listar do repositório para obter a lista de clientes
+                var listaClientes = _clienteRepository.Listar(termo); // Chama o método Listar do repositório para obter a lista de clientes
                 _frmCadastroClientes.ExibirClientes(listaClientes); // Chama o método do formulário para exibir os clientes
 
             }
@@ -76,6 +76,7 @@ namespace SistemaAtendimento.Controller
             {
                 _clienteRepository.Excluir(id);
                 _frmCadastroClientes.ExibirMensagem("Cliente excluído com sucesso!");
+
                 ListarClientes();
                 _frmCadastroClientes.DesabilitarCampos(); // desabilita os campos após salvar
             }

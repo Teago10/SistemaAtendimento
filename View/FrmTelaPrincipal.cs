@@ -60,5 +60,11 @@ namespace SistemaAtendimento
         {
 
         }
+
+        private void novoAtendimentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAtendimento frmAtendimento = new FrmAtendimento();
+            frmAtendimento.ShowDialog(); // abre o formulário como uma janela modal
+        }
     }
 }

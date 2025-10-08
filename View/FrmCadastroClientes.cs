@@ -373,16 +373,26 @@ namespace SistemaAtendimento
 
                     if (response.IsSuccessStatusCode) // se a resposta for bem-sucedida
                     {
-                        string json = await response.Content.ReadAsStringAsync();
+                        string json = await response.Content.ReadAsStringAsync(); // lê o conteúdo da resposta como uma string
 
                         dynamic? dadosEndereco = JsonConvert.DeserializeObject(json);
+
+                        if (dadosEndereco?.erro == true)
+                        {
+                            ExibirMensagem("CEP não encontrado.");
+                            return;
+                        }
+
 
                         txtEndereco.Text = dadosEndereco?.logradouro;
                         txtBairro.Text = dadosEndereco?.bairro;
                         txtCidade.Text = dadosEndereco?.localidade;
                         cbxEstado.Text = dadosEndereco?.uf;
 
-
+                    }
+                    else
+                    {
+                        ExibirMensagem("CEP não encontrado.");
                     }
                 }
             }
@@ -393,12 +403,19 @@ namespace SistemaAtendimento
         }
 
         // Task ou void - método assíncrono que não retorna valor
-        private async Task txtCep_Leave(object sender, EventArgs e)
+
+        private async void txtCep_Leave_1(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtCep.Text)) // se o campo CEP não estiver vazio
             {
                 await BuscarEnderecoPorCep(txtCep.Text); // chama o método para buscar o endereço pelo CEP
             }
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            string termo = txtPesquisar.Text.Trim(); // obtém o termo de busca e remove espaços em branco
+            _clienteController.ListarClientes(termo); // chama o método para listar os clientes com o termo de busca
         }
     }
 }

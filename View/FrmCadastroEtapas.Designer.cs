@@ -177,6 +177,7 @@
             btnPesquisar.Size = new Size(67, 31);
             btnPesquisar.TabIndex = 11;
             btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
             // 
             // btnNovo
             // 

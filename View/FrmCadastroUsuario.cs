@@ -51,7 +51,7 @@ namespace SistemaAtendimento.View
 
             };
 
-            if(!ValidarDados(usuario))
+            if (!ValidarDados(usuario))
                 return;
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
@@ -62,7 +62,7 @@ namespace SistemaAtendimento.View
                 usuario.Id = Convert.ToInt32(txtCodigo.Text);
                 _usuarioController.Atualizar(usuario);
             }
-            
+
         }
 
         public bool ValidarDados(Usuarios usuarios)
@@ -147,7 +147,7 @@ namespace SistemaAtendimento.View
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtCodigo.Text))
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
                 ExibirMensagem("Selecione um usuário para excluir.");
                 return;
@@ -180,6 +180,10 @@ namespace SistemaAtendimento.View
             }
         }
 
-
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            string termo = txtPesquisar.Text.Trim();
+            _usuarioController.ListarUsuarios(termo);
+        }
     }
 }

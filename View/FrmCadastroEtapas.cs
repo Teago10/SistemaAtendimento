@@ -47,7 +47,7 @@ namespace SistemaAtendimento.View
             if (!ValidarDados(etapa))
                 return;
 
-            if(string.IsNullOrWhiteSpace(txtCodigo.Text)) // se o campo código estiver vazio, é um novo cadastro
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text)) // se o campo código estiver vazio, é um novo cadastro
             {
                 _etapaController.Salvar(etapa);
             }
@@ -137,10 +137,10 @@ namespace SistemaAtendimento.View
 
         private void dgvListaEtapas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow linhaSelecionada = dgvListaEtapas.Rows[e.RowIndex];
-                
+
                 txtCodigo.Text = linhaSelecionada.Cells["Id"].Value.ToString();
                 txtNome.Text = linhaSelecionada.Cells["Nome"].Value.ToString();
                 txtOrdem.Text = linhaSelecionada.Cells["Ordem"].Value.ToString();
@@ -152,6 +152,12 @@ namespace SistemaAtendimento.View
                 btnNovo.Enabled = false;
                 btnCancelar.Enabled = true;
             }
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            string termo = txtPesquisar.Text.Trim();
+            _etapaController.ListarEtapas(termo);
         }
     }
 }

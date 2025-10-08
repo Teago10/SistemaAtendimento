@@ -21,11 +21,11 @@ namespace SistemaAtendimento.Controller
             _usuarioRepository = new UsuarioRepository();
         }
 
-        public void ListarUsuarios()
+        public void ListarUsuarios(string termo = "")
         {
             try
             {
-                var listaUsuarios = _usuarioRepository.Listar();
+                var listaUsuarios = _usuarioRepository.Listar(termo);
                 _frmCadastroUsuario.ExibrirUsuarios (listaUsuarios);
             }
             catch (Exception ex)
@@ -41,6 +41,7 @@ namespace SistemaAtendimento.Controller
             {
                 _usuarioRepository.Inserir(usuario);
                 _frmCadastroUsuario.ExibirMensagem("Usuário cadastrado com sucesso!");
+
                 ListarUsuarios(); // Atualiza a lista de usuários após a inserção
                 _frmCadastroUsuario.DesabilitarCampos(); // desabilita os campos após salvar
             }
@@ -72,6 +73,7 @@ namespace SistemaAtendimento.Controller
             {
                 _usuarioRepository.Excluir(Id);
                 _frmCadastroUsuario.ExibirMensagem("Usuário excluído com sucesso!");
+
                 ListarUsuarios();
                 _frmCadastroUsuario.DesabilitarCampos(); // desabilita os campos após salvar
             }

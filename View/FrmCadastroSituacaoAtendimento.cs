@@ -43,7 +43,7 @@ namespace SistemaAtendimento.View
                 Ativo = rdbAtivo.Checked
             };
 
-            if(!ValidarDados(situacaoAtendimentos))
+            if (!ValidarDados(situacaoAtendimentos))
             {
                 return;
             }
@@ -160,6 +160,12 @@ namespace SistemaAtendimento.View
                 btnNovo.Enabled = false;
                 btnCancelar.Enabled = true;
             }
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            string termo = txtPesquisar.Text.Trim();
+            _situacaoAtendimentoController.ListarSituacoesAtendimento(termo);
         }
     }
 }
