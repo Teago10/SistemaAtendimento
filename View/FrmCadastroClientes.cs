@@ -417,5 +417,10 @@ namespace SistemaAtendimento
             string termo = txtPesquisar.Text.Trim(); // obtém o termo de busca e remove espaços em branco
             _clienteController.ListarClientes(termo); // chama o método para listar os clientes com o termo de busca
         }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -535,6 +535,7 @@
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.Size = new Size(200, 23);
             txtPesquisar.TabIndex = 20;
+            txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // btnPesquisar
             // 

@@ -36,6 +36,7 @@
             cbxFiltro = new ComboBox();
             btnPesquisar = new Button();
             txtFiltro = new TextBox();
+            lblNomeCampo = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvConsultaAtendimento).BeginInit();
             grbFiltrar.SuspendLayout();
             SuspendLayout();
@@ -57,6 +58,7 @@
             // 
             // grbFiltrar
             // 
+            grbFiltrar.Controls.Add(lblNomeCampo);
             grbFiltrar.Controls.Add(cbxFiltro);
             grbFiltrar.Controls.Add(btnPesquisar);
             grbFiltrar.Controls.Add(txtFiltro);
@@ -71,29 +73,39 @@
             // 
             cbxFiltro.FormattingEnabled = true;
             cbxFiltro.Items.AddRange(new object[] { "Código de Atendimento", "Nome do Cliente", "CPF", "CNPJ" });
-            cbxFiltro.Location = new Point(8, 24);
+            cbxFiltro.Location = new Point(8, 34);
             cbxFiltro.Name = "cbxFiltro";
             cbxFiltro.Size = new Size(191, 23);
             cbxFiltro.TabIndex = 10;
+            cbxFiltro.SelectedIndexChanged += cbxFiltro_SelectedIndexChanged;
             // 
             // btnPesquisar
             // 
             btnPesquisar.ImageAlign = ContentAlignment.MiddleLeft;
             btnPesquisar.ImageKey = "icone-pesquisa.png";
             btnPesquisar.ImageList = imlIcone;
-            btnPesquisar.Location = new Point(615, 19);
+            btnPesquisar.Location = new Point(615, 29);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(151, 31);
             btnPesquisar.TabIndex = 8;
             btnPesquisar.Text = "Pesquisar";
             btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
             // 
             // txtFiltro
             // 
-            txtFiltro.Location = new Point(216, 23);
+            txtFiltro.Location = new Point(216, 33);
             txtFiltro.Name = "txtFiltro";
             txtFiltro.Size = new Size(384, 23);
             txtFiltro.TabIndex = 7;
+            // 
+            // lblNomeCampo
+            // 
+            lblNomeCampo.AutoSize = true;
+            lblNomeCampo.Location = new Point(224, 16);
+            lblNomeCampo.Name = "lblNomeCampo";
+            lblNomeCampo.Size = new Size(0, 15);
+            lblNomeCampo.TabIndex = 11;
             // 
             // FrmConsultaAtendimento
             // 
@@ -104,6 +116,7 @@
             Controls.Add(dgvConsultaAtendimento);
             Name = "FrmConsultaAtendimento";
             Text = "Consulta de Atendimento";
+            Load += FrmConsultaAtendimento_Load;
             ((System.ComponentModel.ISupportInitialize)dgvConsultaAtendimento).EndInit();
             grbFiltrar.ResumeLayout(false);
             grbFiltrar.PerformLayout();
@@ -118,5 +131,6 @@
         private ComboBox cbxFiltro;
         private Button btnPesquisar;
         private TextBox txtFiltro;
+        private Label lblNomeCampo;
     }
 }
