@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaAtendimento.Controller;
+using SistemaAtendimento.Model;
 
 namespace SistemaAtendimento.View
 {
     public partial class FrmAtendimento : Form
     {
+        private AtendimentoController _atendimentoController;
         public FrmAtendimento()
         {
             InitializeComponent();
+            _atendimentoController = new AtendimentoController(this);
         }
 
         private void lblAtendimento_Click(object sender, EventArgs e)
@@ -31,6 +35,116 @@ namespace SistemaAtendimento.View
         {
             FrmConsultaAtendimento _frmConsultaAtendimento = new FrmConsultaAtendimento();
             _frmConsultaAtendimento.ShowDialog();
+        }
+
+        private void CarregarClientes()
+        {
+            var clientes = _atendimentoController.ListarClientes();
+
+            cbxNomeCliente.DataSource = clientes;
+            cbxNomeCliente.DisplayMember = "Nome";
+            cbxNomeCliente.SelectedIndex = -1; // para não vir nenhum nome selecionado
+            cbxNomeCliente.ValueMember = "Id"; // guardar o nome do usuario selecionado
+            //Filtros no comboBox
+            cbxNomeCliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbxNomeCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
+
+        private void CarregarSituacaoAtendimento()
+        {
+            var situacaoAtendimento = _atendimentoController.ListarSituacao();
+
+            cbxSituacaoAtendimento.DataSource = situacaoAtendimento;
+            cbxSituacaoAtendimento.DisplayMember = "Nome";
+            cbxSituacaoAtendimento.SelectedIndex = -1;
+            cbxSituacaoAtendimento.ValueMember = "Id";
+        }
+
+        private void CarregarEtapas()
+        {
+            var etapas = _atendimentoController.ListarEtapas();
+
+            cbxEtapaAtendimento.DataSource = etapas;
+            cbxEtapaAtendimento.DisplayMember = "Nome";
+            cbxEtapaAtendimento.SelectedIndex = -1;
+            cbxEtapaAtendimento.ValueMember = "Id";
+        }
+
+        private void FrmAtendimento_Load(object sender, EventArgs e)
+        {
+            CarregarClientes();
+            CarregarSituacaoAtendimento();
+            CarregarEtapas();
+        }
+
+        private void cbxNomeCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtCodigoCliente.Clear();
+
+            if (cbxNomeCliente.SelectedValue != null) // diferente de nula tem alguma coisa selecionada
+            {
+                txtCodigoCliente.Text = cbxNomeCliente.SelectedValue.ToString();
+
+            }
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            HabilitarCampos();
+        }
+        private void HabilitarCampos()
+        {
+            cbxNomeCliente.Enabled = true;
+            dtpAberturaAtendimento.Enabled = true;
+            cbxSituacaoAtendimento.Enabled = true;
+            txtObservacaoAtendimento.ReadOnly = false;
+            btnNovo.Enabled = false;
+            btnSalvar.Enabled = true;
+            btnCancelar.Enabled = true;
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DesativarCampos();
+        }
+        private void DesativarCampos()
+        {
+            LimparCampos();
+            cbxNomeCliente.Enabled = false;
+            dtpAberturaAtendimento.Enabled = false;
+            cbxSituacaoAtendimento.Enabled = false;
+            txtObservacaoAtendimento.ReadOnly = true;
+            btnNovo.Enabled = true;
+            btnSalvar.Enabled = false;
+            btnCancelar.Enabled = false;
+        }
+        private void LimparCampos()
+        {
+            txtCodigoCliente.Clear();
+            cbxNomeCliente.SelectedIndex = -1;
+            cbxSituacaoAtendimento.SelectedIndex = -1;
+            txtObservacaoAtendimento.Clear();
+            dtpAberturaAtendimento.Value = DateTime.Now;
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            Atendimentos atendimentos = new Atendimentos 
+            { 
+                ClienteId = Convert.ToInt32(txtCodigoCliente.Text),
+                UsuarioId = 1,
+                SituacaoAtendimentoId = Convert.ToInt32(cbxSituacaoAtendimento.SelectedValue),
+                DataAbertura = dtpAberturaAtendimento.Value,
+                Observacao = txtObservacaoAtendimento.Text
+            };
+            if(!ValidarDados(atendimentos)) 
+                return;
+        }
+        private bool ValidarDados(Atendimentos atendimento)
+        {
+            // Criar regras de Validação de campos
+            return true;
         }
     }
 }

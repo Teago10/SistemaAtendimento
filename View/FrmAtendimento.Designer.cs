@@ -34,20 +34,19 @@
             lblDadosCliente = new Label();
             txtCodigoAtendimento = new TextBox();
             grbDadosCliente = new GroupBox();
+            cbxNomeCliente = new ComboBox();
             btnFinalizar = new Button();
             imlIcones = new ImageList(components);
             btnExcluir = new Button();
-            btnEditar = new Button();
             btnNovo = new Button();
             lblObservacoes = new Label();
-            txtObservaccaoAtendimento = new TextBox();
+            txtObservacaoAtendimento = new TextBox();
             btnCancelar = new Button();
             btnSalvar = new Button();
             cbxSituacaoAtendimento = new ComboBox();
             lblSituacaoAtendimento = new Label();
             dtpAberturaAtendimento = new DateTimePicker();
             lblDataAbertura = new Label();
-            cbxNomeCliente = new TextBox();
             txtCodigoCliente = new TextBox();
             lblNome = new Label();
             lblCodigoCliente = new Label();
@@ -88,24 +87,24 @@
             // 
             txtCodigoAtendimento.Location = new Point(680, 16);
             txtCodigoAtendimento.Name = "txtCodigoAtendimento";
+            txtCodigoAtendimento.ReadOnly = true;
             txtCodigoAtendimento.Size = new Size(100, 23);
             txtCodigoAtendimento.TabIndex = 2;
             // 
             // grbDadosCliente
             // 
+            grbDadosCliente.Controls.Add(cbxNomeCliente);
             grbDadosCliente.Controls.Add(btnFinalizar);
             grbDadosCliente.Controls.Add(btnExcluir);
-            grbDadosCliente.Controls.Add(btnEditar);
             grbDadosCliente.Controls.Add(btnNovo);
             grbDadosCliente.Controls.Add(lblObservacoes);
-            grbDadosCliente.Controls.Add(txtObservaccaoAtendimento);
+            grbDadosCliente.Controls.Add(txtObservacaoAtendimento);
             grbDadosCliente.Controls.Add(btnCancelar);
             grbDadosCliente.Controls.Add(btnSalvar);
             grbDadosCliente.Controls.Add(cbxSituacaoAtendimento);
             grbDadosCliente.Controls.Add(lblSituacaoAtendimento);
             grbDadosCliente.Controls.Add(dtpAberturaAtendimento);
             grbDadosCliente.Controls.Add(lblDataAbertura);
-            grbDadosCliente.Controls.Add(cbxNomeCliente);
             grbDadosCliente.Controls.Add(txtCodigoCliente);
             grbDadosCliente.Controls.Add(lblNome);
             grbDadosCliente.Controls.Add(lblCodigoCliente);
@@ -117,8 +116,19 @@
             grbDadosCliente.Text = "Dados do Cliente";
             grbDadosCliente.Enter += grbDadosCliente_Enter;
             // 
+            // cbxNomeCliente
+            // 
+            cbxNomeCliente.Enabled = false;
+            cbxNomeCliente.FormattingEnabled = true;
+            cbxNomeCliente.Location = new Point(120, 40);
+            cbxNomeCliente.Name = "cbxNomeCliente";
+            cbxNomeCliente.Size = new Size(368, 23);
+            cbxNomeCliente.TabIndex = 27;
+            cbxNomeCliente.SelectedIndexChanged += cbxNomeCliente_SelectedIndexChanged;
+            // 
             // btnFinalizar
             // 
+            btnFinalizar.Enabled = false;
             btnFinalizar.ImageAlign = ContentAlignment.MiddleLeft;
             btnFinalizar.ImageIndex = 6;
             btnFinalizar.ImageList = imlIcones;
@@ -144,27 +154,16 @@
             // 
             // btnExcluir
             // 
+            btnExcluir.Enabled = false;
             btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
             btnExcluir.ImageIndex = 3;
             btnExcluir.ImageList = imlIcones;
-            btnExcluir.Location = new Point(320, 168);
+            btnExcluir.Location = new Point(208, 168);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(99, 32);
             btnExcluir.TabIndex = 25;
             btnExcluir.Text = "    Excluir";
             btnExcluir.UseVisualStyleBackColor = true;
-            // 
-            // btnEditar
-            // 
-            btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditar.ImageIndex = 2;
-            btnEditar.ImageList = imlIcones;
-            btnEditar.Location = new Point(112, 168);
-            btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(88, 32);
-            btnEditar.TabIndex = 24;
-            btnEditar.Text = "    Editar";
-            btnEditar.UseVisualStyleBackColor = true;
             // 
             // btnNovo
             // 
@@ -177,6 +176,7 @@
             btnNovo.TabIndex = 23;
             btnNovo.Text = "    Novo";
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
             // 
             // lblObservacoes
             // 
@@ -188,40 +188,46 @@
             lblObservacoes.Text = "Observações";
             lblObservacoes.TextAlign = ContentAlignment.TopCenter;
             // 
-            // txtObservaccaoAtendimento
+            // txtObservacaoAtendimento
             // 
-            txtObservaccaoAtendimento.Location = new Point(250, 83);
-            txtObservaccaoAtendimento.Multiline = true;
-            txtObservaccaoAtendimento.Name = "txtObservaccaoAtendimento";
-            txtObservaccaoAtendimento.Size = new Size(464, 80);
-            txtObservaccaoAtendimento.TabIndex = 21;
+            txtObservacaoAtendimento.Location = new Point(250, 83);
+            txtObservacaoAtendimento.Multiline = true;
+            txtObservacaoAtendimento.Name = "txtObservacaoAtendimento";
+            txtObservacaoAtendimento.ReadOnly = true;
+            txtObservacaoAtendimento.Size = new Size(464, 80);
+            txtObservacaoAtendimento.TabIndex = 21;
             // 
             // btnCancelar
             // 
+            btnCancelar.Enabled = false;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.ImageIndex = 1;
             btnCancelar.ImageList = imlIcones;
-            btnCancelar.Location = new Point(432, 168);
+            btnCancelar.Location = new Point(320, 168);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(99, 32);
             btnCancelar.TabIndex = 20;
             btnCancelar.Text = "    Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnSalvar
             // 
+            btnSalvar.Enabled = false;
             btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
             btnSalvar.ImageIndex = 0;
             btnSalvar.ImageList = imlIcones;
-            btnSalvar.Location = new Point(216, 168);
+            btnSalvar.Location = new Point(104, 168);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(88, 32);
             btnSalvar.TabIndex = 19;
             btnSalvar.Text = "    Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // cbxSituacaoAtendimento
             // 
+            cbxSituacaoAtendimento.Enabled = false;
             cbxSituacaoAtendimento.FormattingEnabled = true;
             cbxSituacaoAtendimento.Location = new Point(8, 84);
             cbxSituacaoAtendimento.Name = "cbxSituacaoAtendimento";
@@ -239,6 +245,7 @@
             // 
             // dtpAberturaAtendimento
             // 
+            dtpAberturaAtendimento.Enabled = false;
             dtpAberturaAtendimento.Location = new Point(512, 39);
             dtpAberturaAtendimento.Name = "dtpAberturaAtendimento";
             dtpAberturaAtendimento.Size = new Size(208, 23);
@@ -253,17 +260,11 @@
             lblDataAbertura.TabIndex = 15;
             lblDataAbertura.Text = "Data Abertura";
             // 
-            // cbxNomeCliente
-            // 
-            cbxNomeCliente.Location = new Point(127, 40);
-            cbxNomeCliente.Name = "cbxNomeCliente";
-            cbxNomeCliente.Size = new Size(336, 23);
-            cbxNomeCliente.TabIndex = 14;
-            // 
             // txtCodigoCliente
             // 
             txtCodigoCliente.Location = new Point(8, 40);
             txtCodigoCliente.Name = "txtCodigoCliente";
+            txtCodigoCliente.ReadOnly = true;
             txtCodigoCliente.Size = new Size(93, 23);
             txtCodigoCliente.TabIndex = 13;
             // 
@@ -320,6 +321,7 @@
             // 
             // btnExcluirEtapa
             // 
+            btnExcluirEtapa.Enabled = false;
             btnExcluirEtapa.ImageAlign = ContentAlignment.MiddleLeft;
             btnExcluirEtapa.ImageIndex = 1;
             btnExcluirEtapa.ImageList = imlIcones;
@@ -347,11 +349,13 @@
             txtEtapaObservacao.Location = new Point(8, 80);
             txtEtapaObservacao.Multiline = true;
             txtEtapaObservacao.Name = "txtEtapaObservacao";
+            txtEtapaObservacao.ReadOnly = true;
             txtEtapaObservacao.Size = new Size(264, 72);
             txtEtapaObservacao.TabIndex = 22;
             // 
             // cbxEtapaAtendimento
             // 
+            cbxEtapaAtendimento.Enabled = false;
             cbxEtapaAtendimento.FormattingEnabled = true;
             cbxEtapaAtendimento.Location = new Point(8, 37);
             cbxEtapaAtendimento.Name = "cbxEtapaAtendimento";
@@ -393,6 +397,7 @@
             Controls.Add(lblAtendimento);
             Name = "FrmAtendimento";
             Text = "Atendimento";
+            Load += FrmAtendimento_Load;
             grbDadosCliente.ResumeLayout(false);
             grbDadosCliente.PerformLayout();
             grbEtapasAtendimento.ResumeLayout(false);
@@ -414,12 +419,11 @@
         private Label lblSituacaoAtendimento;
         private DateTimePicker dtpAberturaAtendimento;
         private Label lblDataAbertura;
-        private TextBox cbxNomeCliente;
         private TextBox txtCodigoCliente;
         private Label lblNome;
         private Label lblCodigoCliente;
         private Label lblObservacoes;
-        private TextBox txtObservaccaoAtendimento;
+        private TextBox txtObservacaoAtendimento;
         private ImageList imlIcones;
         private GroupBox grbEtapasAtendimento;
         private Label lblEtapaAtendimento;
@@ -431,8 +435,8 @@
         private DataGridView dgvEtapasAtendimento;
         private Button btnPesquisarAtendimento;
         private Button btnExcluir;
-        private Button btnEditar;
         private Button btnNovo;
         private Button btnFinalizar;
+        private ComboBox cbxNomeCliente;
     }
 }

@@ -33,10 +33,10 @@
             dgvConsultaAtendimento = new DataGridView();
             imlIcone = new ImageList(components);
             grbFiltrar = new GroupBox();
+            lblNomeCampo = new Label();
             cbxFiltro = new ComboBox();
             btnPesquisar = new Button();
             txtFiltro = new TextBox();
-            lblNomeCampo = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvConsultaAtendimento).BeginInit();
             grbFiltrar.SuspendLayout();
             SuspendLayout();
@@ -48,6 +48,7 @@
             dgvConsultaAtendimento.Name = "dgvConsultaAtendimento";
             dgvConsultaAtendimento.Size = new Size(784, 336);
             dgvConsultaAtendimento.TabIndex = 0;
+            dgvConsultaAtendimento.CellContentClick += dgvConsultaAtendimento_CellContentClick;
             // 
             // imlIcone
             // 
@@ -68,6 +69,14 @@
             grbFiltrar.TabIndex = 7;
             grbFiltrar.TabStop = false;
             grbFiltrar.Text = "Filtrar por";
+            // 
+            // lblNomeCampo
+            // 
+            lblNomeCampo.AutoSize = true;
+            lblNomeCampo.Location = new Point(224, 16);
+            lblNomeCampo.Name = "lblNomeCampo";
+            lblNomeCampo.Size = new Size(0, 15);
+            lblNomeCampo.TabIndex = 11;
             // 
             // cbxFiltro
             // 
@@ -98,14 +107,7 @@
             txtFiltro.Name = "txtFiltro";
             txtFiltro.Size = new Size(384, 23);
             txtFiltro.TabIndex = 7;
-            // 
-            // lblNomeCampo
-            // 
-            lblNomeCampo.AutoSize = true;
-            lblNomeCampo.Location = new Point(224, 16);
-            lblNomeCampo.Name = "lblNomeCampo";
-            lblNomeCampo.Size = new Size(0, 15);
-            lblNomeCampo.TabIndex = 11;
+            txtFiltro.TextChanged += txtFiltro_TextChanged;
             // 
             // FrmConsultaAtendimento
             // 

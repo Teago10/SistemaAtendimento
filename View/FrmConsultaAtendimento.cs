@@ -14,7 +14,7 @@ namespace SistemaAtendimento.View
 {
     public partial class FrmConsultaAtendimento : Form
     {
-        ConsultaAtendimentoController _consultaAtendimentoController;
+        private ConsultaAtendimentoController _consultaAtendimentoController;
         public FrmConsultaAtendimento()
         {
             InitializeComponent();
@@ -38,21 +38,24 @@ namespace SistemaAtendimento.View
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string termo = txtFiltro.Text.Trim(); // obtém o termo de pesquisa do TextBox, removendo espaços em branco extras
-            string condicao = cbxFiltro.SelectedItem?.ToString() ?? " "; // obtém a condição selecionada no ComboBox, ou um valor padrão se nada estiver selecionado
+            string condicao = cbxFiltro.Text.Trim(); // obtém a condição selecionada no ComboBox, ou um valor padrão se nada estiver selecionado
             _consultaAtendimentoController.ListarAtendimento(termo, condicao); // chama o método do controller para listar os atendimentos com base no termo e condição fornecidos
         }
 
-        // Atualiza o label lblNomeCampo quando a seleção do ComboBox cbxFiltro é alterada
+
         private void cbxFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxFiltro.SelectedItem != null) // verifica se um item está selecionado
-            {
-                lblNomeCampo.Text = cbxFiltro.SelectedItem.ToString(); // atualiza o texto do label com o item selecionado
-            }
-            else
-            {
-                lblNomeCampo.Text = string.Empty; // define um valor padrão caso nenhum item esteja selecionado
-            }
+
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvConsultaAtendimento_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

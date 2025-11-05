@@ -19,7 +19,7 @@ namespace SistemaAtendimento.Controller
             _atendimentoRepository = new AtendimentoRepository();
             
         }
-        public void ListarAtendimento(string termo = " ", string condicao = " ")
+        public void ListarAtendimento(string termo = "", string condicao = "")
         {
             try
             {

@@ -13,42 +13,61 @@ namespace SistemaAtendimento.Repositories
     {
         public List<Atendimentos> Listar(string termo = "", string condicao = "")
         {
-           var lista = new List<Atendimentos>();
+            var lista = new List<Atendimentos>();
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"SELECT a.*, c.nome AS cliente_nome, sa.nome AS situacao_nome," +
-                    " u.nome AS usuario_nome, c.cpf_cnpj " +
-                    "FROM atendimentos a\r\n" +
-                    "INNER JOIN clientes c ON c.id = a.cliente_id\r\n" +
-                    "INNER JOIN situacao_atendimentos sa ON sa.id = a.situacao_atendimento_id\r\n" +
-                    "INNER JOIN usuarios u ON u.id = a.usuario_id";
+                string sql = @"SELECT 
+                           a.*,     
+                           c.nome AS cliente_nome,       
+                           sa.nome AS situacao_nome, 
+                           u.nome AS usuario_nome, 
+                           c.cpf_cnpj 
+                       FROM atendimentos a
+                       INNER JOIN clientes c ON c.id = a.cliente_id
+                       INNER JOIN situacao_atendimentos sa ON sa.id = a.situacao_atendimento_id
+                       INNER JOIN usuarios u ON u.id = a.usuario_id";
 
                 //só aplica o filtro se o usuário tiver digitado algo no campo de busca
                 if (!string.IsNullOrEmpty(termo) && !string.IsNullOrEmpty(condicao))
                 {
-                    if (condicao == "Código do Atendimento")
+                    if (condicao == "Código de Atendimento")
                     {
                         sql += " WHERE a.id = @termo";
                     } 
                     else if(condicao == "Nome do Cliente")
                     {
                         sql += " WHERE c.nome LIKE @termo";
-                        termo = $"%{termo}%";
+                        
                     }
                     else 
                     {
-                        sql += " WHERE c.cpf_cnpj = @termo";
+                        sql += " WHERE c.cpf_cnpj LIKE @termo";
                     }
+                    
                 }
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
-                    if (!string.IsNullOrEmpty(termo))
+                    if (!string.IsNullOrEmpty(termo) && !string.IsNullOrEmpty(condicao))
                     {
-                        comando.Parameters.AddWithValue("@termo", termo);
-                    }
-                    conexao.Open();
 
+                        if (condicao == "Código de Atendimento")
+                        {
+
+                            if (int.TryParse(termo, out int codigo))
+                            {
+                                comando.Parameters.AddWithValue("@termo", codigo);
+                            }
+
+                        }
+                        else
+                        {
+                            comando.Parameters.AddWithValue("@termo", "%" + termo + "%");
+                        }
+                    }
+                    
+                    conexao.Open();
+                    
                     using (var linhas = comando.ExecuteReader())
                     {
                         while (linhas.Read())
@@ -118,6 +137,7 @@ namespace SistemaAtendimento.Repositories
                     comando.Parameters.AddWithValue("@situacao_atendimento_id", atendimento.SituacaoAtendimentoId);
                     comando.Parameters.AddWithValue("@cpf_cnpj", atendimento.Cpf_Cnpj);
                     comando.Parameters.AddWithValue("@id", atendimento.Id);
+
                     conexao.Open();
                     comando.ExecuteNonQuery();
                 }
