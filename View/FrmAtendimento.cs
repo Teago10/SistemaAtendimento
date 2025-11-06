@@ -130,21 +130,51 @@ namespace SistemaAtendimento.View
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Atendimentos atendimentos = new Atendimentos 
+            Atendimentos atendimento = new Atendimentos 
             { 
-                ClienteId = Convert.ToInt32(txtCodigoCliente.Text),
+                ClienteId = string.IsNullOrWhiteSpace(txtCodigoCliente.Text) ? null 
+                : Convert.ToInt32(txtCodigoCliente.Text),
                 UsuarioId = 1,
-                SituacaoAtendimentoId = Convert.ToInt32(cbxSituacaoAtendimento.SelectedValue),
+                SituacaoAtendimentoId = cbxSituacaoAtendimento.SelectedValue == null ? 
+                null : Convert.ToInt32(cbxSituacaoAtendimento.SelectedValue),
                 DataAbertura = dtpAberturaAtendimento.Value,
                 Observacao = txtObservacaoAtendimento.Text
             };
-            if(!ValidarDados(atendimentos)) 
+            if(!ValidarDados(atendimento)) 
                 return;
+            _atendimentoController.Salvar(atendimento);
         }
         private bool ValidarDados(Atendimentos atendimento)
         {
             // Criar regras de Validação de campos
+            if (string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
+            {
+                cbxNomeCliente.Focus();
+                ExibirMensagem("Selecione um Cliente");
+                return false;
+            }
+
+            if (cbxSituacaoAtendimento.SelectedValue == null)
+            {
+                ExibirMensagem("Selecione uma Situação do Atendimento");
+                cbxSituacaoAtendimento.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtObservacaoAtendimento.Text))
+            {
+                ExibirMensagem("Digite uma Observação do Atendimento");
+                txtObservacaoAtendimento.Focus();
+                return false;
+            }
             return true;
         }
+
+        public void ExibirMensagem(string mensagem)
+        {
+            MessageBox.Show(mensagem);
+        }
+
+        
     }
 }

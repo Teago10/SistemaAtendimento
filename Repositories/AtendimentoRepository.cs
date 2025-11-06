@@ -99,18 +99,16 @@ namespace SistemaAtendimento.Repositories
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"INSERT INTO atendimentos (cliente_id, usuario_id, data_Abertura, data_fechamento, observacao, situacao_atendimento_id, cpf_cnpj) 
-                values (@cliente_id, @usuario_id, @data_Abertura, @data_fechamento, @observacao, @situacao_atendimento_id, @cpf_cnpj)";
+                string sql = @"INSERT INTO atendimentos (cliente_id, usuario_id, data_Abertura, observacao, situacao_atendimento_id) 
+                values (@cliente_id, @usuario_id, @data_Abertura, @observacao, @situacao_atendimento_id)";
 
                 using (var comando = new SqlCommand(sql, conexao)) 
                 {
                     comando.Parameters.AddWithValue("@cliente_id", atendimento.ClienteId);
                     comando.Parameters.AddWithValue("@usuario_id", atendimento.UsuarioId);
                     comando.Parameters.AddWithValue("@data_abertura", atendimento.DataAbertura);
-                    comando.Parameters.AddWithValue("@data_fechamento", atendimento.DataFechamento);
                     comando.Parameters.AddWithValue("@observacao", atendimento.Observacao);
                     comando.Parameters.AddWithValue("@situacao_atendimento_id", atendimento.SituacaoAtendimentoId);
-                    comando.Parameters.AddWithValue("@cpf_cnpj", atendimento.Cpf_Cnpj);
                     conexao.Open();
                     comando.ExecuteNonQuery();
 
