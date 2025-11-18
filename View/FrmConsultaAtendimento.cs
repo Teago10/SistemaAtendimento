@@ -15,6 +15,7 @@ namespace SistemaAtendimento.View
     public partial class FrmConsultaAtendimento : Form
     {
         private ConsultaAtendimentoController _consultaAtendimentoController;
+
         public FrmConsultaAtendimento()
         {
             InitializeComponent();
@@ -56,6 +57,23 @@ namespace SistemaAtendimento.View
         private void dgvConsultaAtendimento_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dgvConsultaAtendimento_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                //pega a linha do grid que seja igual ao [] campo id
+                int id = (int)dgvConsultaAtendimento.Rows[e.RowIndex].Cells["id"].Value;
+
+                //MessageBox.Show(id.ToString());
+                
+                FrmAtendimento frmAtendimento = new FrmAtendimento(id);
+                frmAtendimento.Show();
+
+                this.Hide();
+                
+            }
         }
     }
 }

@@ -52,5 +52,10 @@ namespace SistemaAtendimento.Controller
                 _frmAtendimento.ExibirMensagem($"Erro ao Cadastrar o Atendimento: {ex.Message}");
             }
         }
+
+        public Atendimentos? BuscarAtendimentoPorId(int id)
+        {
+            return _atendimentoRepository.BuscarPorId(id);
+        }
     }
 }

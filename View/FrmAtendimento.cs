@@ -15,10 +15,14 @@ namespace SistemaAtendimento.View
     public partial class FrmAtendimento : Form
     {
         private AtendimentoController _atendimentoController;
-        public FrmAtendimento()
+        private int? _atendimentoId;
+
+        public FrmAtendimento(int? atendimentoId = null)
         {
             InitializeComponent();
             _atendimentoController = new AtendimentoController(this);
+
+            _atendimentoId = atendimentoId;
         }
 
         private void lblAtendimento_Click(object sender, EventArgs e)
@@ -75,6 +79,35 @@ namespace SistemaAtendimento.View
             CarregarClientes();
             CarregarSituacaoAtendimento();
             CarregarEtapas();
+
+            if (_atendimentoId.HasValue)
+            {
+                var atendimento = _atendimentoController.BuscarAtendimentoPorId(_atendimentoId.Value);
+                if (atendimento != null)
+                {
+                    PreencherCampos(atendimento);
+                }
+            }
+        }
+
+        private void PreencherCampos(Atendimentos atendimento)
+        {
+            txtCodigoAtendimento.Text = atendimento.Id.ToString();
+            txtCodigoCliente.Text = atendimento.ClienteId.ToString();
+            cbxNomeCliente.SelectedValue = atendimento.ClienteId;
+            cbxSituacaoAtendimento.SelectedValue = atendimento.SituacaoAtendimentoId;
+            dtpAberturaAtendimento.Value = atendimento.DataAbertura ?? DateTime.Now;
+            txtObservacaoAtendimento.Text = atendimento.Observacao;
+
+            //botões
+            btnNovo.Enabled = false;
+            btnExcluir.Enabled = true;
+            btnCancelar.Enabled = true;
+            btnFinalizar.Enabled = true;
+            btnSalvar.Enabled = true;
+            //campos
+            cbxSituacaoAtendimento.Enabled = true;
+            txtObservacaoAtendimento.ReadOnly = false;
         }
 
         private void cbxNomeCliente_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,6 +151,8 @@ namespace SistemaAtendimento.View
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
             btnCancelar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnFinalizar.Enabled = false;
         }
         private void LimparCampos()
         {
