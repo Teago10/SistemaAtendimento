@@ -68,11 +68,10 @@ namespace SistemaAtendimento.View
 
                 //MessageBox.Show(id.ToString());
                 
-                FrmAtendimento frmAtendimento = new FrmAtendimento(id);
-                frmAtendimento.Show();
+                this.Close();
+                var atendimento = new FrmAtendimento(id);
+                atendimento.Show();
 
-                this.Hide();
-                
             }
         }
     }

@@ -167,6 +167,7 @@ namespace SistemaAtendimento.View
         {
             Atendimentos atendimento = new Atendimentos 
             { 
+                Id = _atendimentoId ?? null,
                 ClienteId = string.IsNullOrWhiteSpace(txtCodigoCliente.Text) ? null 
                 : Convert.ToInt32(txtCodigoCliente.Text),
                 UsuarioId = 1,
@@ -175,9 +176,18 @@ namespace SistemaAtendimento.View
                 DataAbertura = dtpAberturaAtendimento.Value,
                 Observacao = txtObservacaoAtendimento.Text
             };
+
             if(!ValidarDados(atendimento)) 
                 return;
-            _atendimentoController.Salvar(atendimento);
+            if (_atendimentoId.HasValue && _atendimentoId > 0) 
+            {
+                _atendimentoController.Atualizar(atendimento);
+            }
+            else
+            {
+                _atendimentoController.Salvar(atendimento);
+            }
+               
         }
         private bool ValidarDados(Atendimentos atendimento)
         {
