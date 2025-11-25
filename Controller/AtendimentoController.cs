@@ -40,17 +40,21 @@ namespace SistemaAtendimento.Controller
         {
             return _etapaRepository.Listar();
         }
-        public void Salvar(Atendimentos atendimento)
+        public int? Salvar(Atendimentos atendimento)
         {
+            int? atendimentoId = null;
             try
             {
-                _atendimentoRepository.Inserir(atendimento);
+                atendimentoId = _atendimentoRepository.Inserir(atendimento);
                 _frmAtendimento.ExibirMensagem("Atendimento Salvo com Sucesso");
+
+               
             }
             catch (Exception ex)
             {
                 _frmAtendimento.ExibirMensagem($"Erro ao Cadastrar o Atendimento: {ex.Message}");
             }
+            return atendimentoId;
         }
 
         public void Atualizar(Atendimentos atendimento)
@@ -70,5 +74,7 @@ namespace SistemaAtendimento.Controller
         {
             return _atendimentoRepository.BuscarPorId(id);
         }
+
+        public void Excluir(int id) {
     }
 }

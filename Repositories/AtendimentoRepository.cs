@@ -144,12 +144,13 @@ namespace SistemaAtendimento.Repositories
             return null;
         }
 
-        public void Inserir(Atendimentos atendimento)
+        public int Inserir(Atendimentos atendimento)
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"INSERT INTO atendimentos (cliente_id, usuario_id, data_Abertura, observacao, situacao_atendimento_id) 
-                values (@cliente_id, @usuario_id, @data_Abertura, @observacao, @situacao_atendimento_id)";
+                string sql = @"INSERT INTO atendimentos (cliente_id, usuario_id, 
+                data_Abertura, observacao, situacao_atendimento_id) OUTPUT
+                INSERTED.id values (@cliente_id, @usuario_id, @data_Abertura, @observacao, @situacao_atendimento_id)";
 
                 using (var comando = new SqlCommand(sql, conexao)) 
                 {
@@ -159,8 +160,9 @@ namespace SistemaAtendimento.Repositories
                     comando.Parameters.AddWithValue("@observacao", atendimento.Observacao);
                     comando.Parameters.AddWithValue("@situacao_atendimento_id", atendimento.SituacaoAtendimentoId);
                     conexao.Open();
-                    comando.ExecuteNonQuery();
 
+                    return Convert.ToInt32(comando.ExecuteScalar());
+                    
                 }
             }
         }
@@ -170,7 +172,7 @@ namespace SistemaAtendimento.Repositories
             using (var conexao = ConexaoDB.GetConexao())
             {
                 string sql = @"UPDATE atendimentos SET cliente_id = @cliente_id, usuario_id = @usuario_id, data_Abertura = @data_Abertura,
-                observacao = @observacao, situacao_atendimento_id = @situacao_atendimento_id, cpf_cnpj = @cpf_cnpj
+                observacao = @observacao, situacao_atendimento_id = @situacao_atendimento_id
                 WHERE id = @id";
 
                 using (var comando = new SqlCommand(sql, conexao))
@@ -181,7 +183,7 @@ namespace SistemaAtendimento.Repositories
                     comando.Parameters.AddWithValue("@data_abertura", atendimento.DataAbertura);
                     comando.Parameters.AddWithValue("@observacao", atendimento.Observacao);
                     comando.Parameters.AddWithValue("@situacao_atendimento_id", atendimento.SituacaoAtendimentoId);
-                    comando.Parameters.AddWithValue("@cpf_cnpj", atendimento.Cpf_Cnpj);
+                    
 
                     conexao.Open();
                     comando.ExecuteNonQuery();

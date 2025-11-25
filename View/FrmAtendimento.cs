@@ -106,6 +106,7 @@ namespace SistemaAtendimento.View
             btnFinalizar.Enabled = true;
             btnSalvar.Enabled = true;
             //campos
+            cbxNomeCliente.Enabled = true;
             cbxSituacaoAtendimento.Enabled = true;
             txtObservacaoAtendimento.ReadOnly = false;
         }
@@ -185,7 +186,9 @@ namespace SistemaAtendimento.View
             }
             else
             {
-                _atendimentoController.Salvar(atendimento);
+                int? atendimentoId = _atendimentoController.Salvar(atendimento);
+                txtCodigoAtendimento.Text = atendimentoId.ToString();
+                _atendimentoId = atendimentoId;
             }
                
         }
