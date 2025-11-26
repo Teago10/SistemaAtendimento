@@ -75,6 +75,19 @@ namespace SistemaAtendimento.Controller
             return _atendimentoRepository.BuscarPorId(id);
         }
 
-        public void Excluir(int id) {
+        public void Excluir(int id) 
+        {
+            try 
+            {
+                _atendimentoRepository.Excluir(id);
+                _frmAtendimento.ExibirMensagem("Cliente Excluido com sucesso");
+
+                _frmAtendimento.DesativarCampos();
+            }
+            catch(Exception ex) 
+            {
+                _frmAtendimento.ExibirMensagem($"Erro ao excluir o cliente: {ex.Message}");
+            }
+        }
     }
 }

@@ -164,6 +164,7 @@
             btnExcluir.TabIndex = 25;
             btnExcluir.Text = "    Excluir";
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnNovo
             // 

@@ -142,7 +142,7 @@ namespace SistemaAtendimento.View
         {
             DesativarCampos();
         }
-        private void DesativarCampos()
+        public void DesativarCampos()
         {
             LimparCampos();
             cbxNomeCliente.Enabled = false;
@@ -166,21 +166,21 @@ namespace SistemaAtendimento.View
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Atendimentos atendimento = new Atendimentos 
-            { 
+            Atendimentos atendimento = new Atendimentos
+            {
                 Id = _atendimentoId ?? null,
-                ClienteId = string.IsNullOrWhiteSpace(txtCodigoCliente.Text) ? null 
+                ClienteId = string.IsNullOrWhiteSpace(txtCodigoCliente.Text) ? null
                 : Convert.ToInt32(txtCodigoCliente.Text),
                 UsuarioId = 1,
-                SituacaoAtendimentoId = cbxSituacaoAtendimento.SelectedValue == null ? 
+                SituacaoAtendimentoId = cbxSituacaoAtendimento.SelectedValue == null ?
                 null : Convert.ToInt32(cbxSituacaoAtendimento.SelectedValue),
                 DataAbertura = dtpAberturaAtendimento.Value,
                 Observacao = txtObservacaoAtendimento.Text
             };
 
-            if(!ValidarDados(atendimento)) 
+            if (!ValidarDados(atendimento))
                 return;
-            if (_atendimentoId.HasValue && _atendimentoId > 0) 
+            if (_atendimentoId.HasValue && _atendimentoId > 0)
             {
                 _atendimentoController.Atualizar(atendimento);
             }
@@ -190,7 +190,7 @@ namespace SistemaAtendimento.View
                 txtCodigoAtendimento.Text = atendimentoId.ToString();
                 _atendimentoId = atendimentoId;
             }
-               
+
         }
         private bool ValidarDados(Atendimentos atendimento)
         {
@@ -223,6 +223,21 @@ namespace SistemaAtendimento.View
             MessageBox.Show(mensagem);
         }
 
-        
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCodigoAtendimento.Text))
+            {
+                ExibirMensagem("Nenhum cliente selecionado para exclusão.");
+                return;
+
+            }
+
+            DialogResult resultado = MessageBox.Show("Deseja Excluir o Cliente?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes) 
+            {
+                int id = Convert.ToInt32(txtCodigoAtendimento.Text);
+                _atendimentoController.Excluir(id);
+            }
+        }
     }
 }
