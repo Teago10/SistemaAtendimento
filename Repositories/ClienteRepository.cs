@@ -67,7 +67,7 @@ namespace SistemaAtendimento.Repositories
         }
 
         // seleciona a palavra e use o atalho ctrl + rr para renomear todas as palavras iguais 
-        public void Inserir(Clientes cliente) // método para inserir um novo cliente no banco de dados
+        public void Inserir(Clientes    cliente) // método para inserir um novo cliente no banco de dados
         {
             using (var conexao = ConexaoDB.GetConexao())
             {

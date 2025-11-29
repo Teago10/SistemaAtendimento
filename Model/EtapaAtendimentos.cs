@@ -8,10 +8,11 @@ namespace SistemaAtendimento.Model
 {
     public class EtapaAtendimentos
     {
-        public int Id { get; set; }
-        public int AtendimentoId { get; set; }
-        public int EtapaId { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public string Observacao { get; set; }
+        public int? Id { get; set; }
+        public int? AtendimentoId { get; set; }
+        public int? EtapaId { get; set; }
+        public int? UsuarioId { get; set; }
+        public DateTime? DataCadastro { get; set; }
+        public string? Observacao { get; set; }
     }
 }
