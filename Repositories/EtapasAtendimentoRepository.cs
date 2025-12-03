@@ -9,7 +9,7 @@ using SistemaAtendimento.Model;
 
 namespace SistemaAtendimento.Repositories
 {
-    public class EtapaAtendimentoRepository
+    public class EtapasAtendimentoRepository
     {
         public List<EtapaAtendimentos> Listar(int atendimentoId)
         {
@@ -33,7 +33,7 @@ namespace SistemaAtendimento.Repositories
                                 Id = Convert.ToInt32(linhas["id"]),
                                 AtendimentoId = Convert.ToInt32(linhas["atendimento_id"]),
                                 EtapaId = Convert.ToInt32(linhas["etapa_id"]),
-                                UsuarioId = Convert.ToInt32(linhas["usuaario_id"]),
+                                UsuarioId = Convert.ToInt32(linhas["usuario_id"]),
                                 DataCadastro = linhas["data_cadastro"] as DateTime?,
                                 Observacao = linhas["observacao"].ToString()
                             });
