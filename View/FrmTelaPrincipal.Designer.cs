@@ -97,14 +97,14 @@
             // novoAtendimentoToolStripMenuItem
             // 
             novoAtendimentoToolStripMenuItem.Name = "novoAtendimentoToolStripMenuItem";
-            novoAtendimentoToolStripMenuItem.Size = new Size(180, 22);
+            novoAtendimentoToolStripMenuItem.Size = new Size(144, 22);
             novoAtendimentoToolStripMenuItem.Text = "Atendimento";
             novoAtendimentoToolStripMenuItem.Click += novoAtendimentoToolStripMenuItem_Click;
             // 
             // consultasToolStripMenuItem
             // 
             consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            consultasToolStripMenuItem.Size = new Size(180, 22);
+            consultasToolStripMenuItem.Size = new Size(144, 22);
             consultasToolStripMenuItem.Text = "Consultas";
             consultasToolStripMenuItem.Click += consultasToolStripMenuItem_Click;
             // 
@@ -142,6 +142,7 @@
             MainMenuStrip = mnuPrincipal;
             Name = "FrmTelaPrincipal";
             Text = "Sistema de Atendimento";
+            FormClosed += FrmTelaPrincipal_FormClosed;
             Load += FrmTelaPrincipal_Load;
             mnuPrincipal.ResumeLayout(false);
             mnuPrincipal.PerformLayout();

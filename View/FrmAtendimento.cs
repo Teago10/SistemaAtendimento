@@ -197,7 +197,7 @@ namespace SistemaAtendimento.View
 
                 btnExcluirEtapa.Enabled = true;
                 grbEtapasAtendimento.Enabled = true;
-                
+
                 CarregarEtapasAtendimento();
             }
 
@@ -260,7 +260,7 @@ namespace SistemaAtendimento.View
 
             dgvEtapasAtendimento.DataSource = _etapasAtendimentoController.Listar(_atendimentoId.Value);
 
-            
+
         }
 
         private void btnAdicionarEtapa_Click(object sender, EventArgs e)
@@ -316,10 +316,16 @@ namespace SistemaAtendimento.View
                                             "Confirmação",
                                             MessageBoxButtons.YesNo);
 
-            if (confirmar == DialogResult.Yes) {
+            if (confirmar == DialogResult.Yes)
+            {
                 _etapasAtendimentoController.Excluir(id);
                 CarregarEtapasAtendimento();
             }
+        }
+
+        private void grbEtapasAtendimento_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -72,5 +72,10 @@ namespace SistemaAtendimento
             FrmConsultaAtendimento _frmConsultaAtendimento = new FrmConsultaAtendimento();
             _frmConsultaAtendimento.Show();
         }
+
+        private void FrmTelaPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

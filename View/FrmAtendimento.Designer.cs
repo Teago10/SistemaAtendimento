@@ -302,6 +302,7 @@
             grbEtapasAtendimento.TabIndex = 12;
             grbEtapasAtendimento.TabStop = false;
             grbEtapasAtendimento.Text = "Etapas do Atendimento";
+            grbEtapasAtendimento.Enter += grbEtapasAtendimento_Enter;
             // 
             // dgvEtapasAtendimento
             // 
