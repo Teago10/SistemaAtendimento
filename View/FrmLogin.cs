@@ -31,7 +31,7 @@ namespace SistemaAtendimento.View
             if (usuarios != null)
             {
                 MessageBox.Show($"Bem-vindo, {usuarios.Nome}");
-                FrmTelaPrincipal principal = new FrmTelaPrincipal();
+                FrmTelaPrincipal principal = new FrmTelaPrincipal(usuarios);
                 principal.Show();
 
                 this.Hide();
@@ -39,8 +39,13 @@ namespace SistemaAtendimento.View
             else
             {
                 MessageBox.Show("Email ou Senha Inválidos", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

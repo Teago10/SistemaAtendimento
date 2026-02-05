@@ -40,7 +40,11 @@
             sistemasToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
             btnConexao = new Button();
+            statusStrip1 = new StatusStrip();
+            slblNome = new ToolStripStatusLabel();
+            slblPerfil = new ToolStripStatusLabel();
             mnuPrincipal.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // mnuPrincipal
@@ -51,6 +55,7 @@
             mnuPrincipal.Size = new Size(800, 24);
             mnuPrincipal.TabIndex = 0;
             mnuPrincipal.Text = "menuStrip1";
+            mnuPrincipal.ItemClicked += mnuPrincipal_ItemClicked;
             // 
             // cadastroToolStripMenuItem
             // 
@@ -124,7 +129,7 @@
             // 
             // btnConexao
             // 
-            btnConexao.Location = new Point(680, 408);
+            btnConexao.Location = new Point(680, 360);
             btnConexao.Name = "btnConexao";
             btnConexao.Size = new Size(99, 23);
             btnConexao.TabIndex = 1;
@@ -132,11 +137,34 @@
             btnConexao.UseVisualStyleBackColor = true;
             btnConexao.Click += btnConexao_Click;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { slblNome, slblPerfil });
+            statusStrip1.Location = new Point(0, 428);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.TabIndex = 2;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // slblNome
+            // 
+            slblNome.Name = "slblNome";
+            slblNome.Size = new Size(40, 17);
+            slblNome.Text = "Nome";
+            slblNome.Click += toolStripStatusLabel1_Click;
+            // 
+            // slblPerfil
+            // 
+            slblPerfil.Name = "slblPerfil";
+            slblPerfil.Size = new Size(34, 17);
+            slblPerfil.Text = "Perfil";
+            // 
             // FrmTelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(statusStrip1);
             Controls.Add(btnConexao);
             Controls.Add(mnuPrincipal);
             MainMenuStrip = mnuPrincipal;
@@ -146,6 +174,8 @@
             Load += FrmTelaPrincipal_Load;
             mnuPrincipal.ResumeLayout(false);
             mnuPrincipal.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,5 +194,8 @@
         private ToolStripMenuItem sistemasToolStripMenuItem;
         private ToolStripMenuItem sairToolStripMenuItem;
         private Button btnConexao;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel slblNome;
+        private ToolStripStatusLabel slblPerfil;
     }
 }
