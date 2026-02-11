@@ -43,13 +43,15 @@
             statusStrip1 = new StatusStrip();
             slblNome = new ToolStripStatusLabel();
             slblPerfil = new ToolStripStatusLabel();
+            relatótiosToolStripMenuItem = new ToolStripMenuItem();
+            listaDeClientesToolStripMenuItem = new ToolStripMenuItem();
             mnuPrincipal.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // mnuPrincipal
             // 
-            mnuPrincipal.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, atendimentoToolStripMenuItem, sistemasToolStripMenuItem });
+            mnuPrincipal.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, atendimentoToolStripMenuItem, sistemasToolStripMenuItem, relatótiosToolStripMenuItem });
             mnuPrincipal.Location = new Point(0, 0);
             mnuPrincipal.Name = "mnuPrincipal";
             mnuPrincipal.Size = new Size(800, 24);
@@ -159,6 +161,20 @@
             slblPerfil.Size = new Size(34, 17);
             slblPerfil.Text = "Perfil";
             // 
+            // relatótiosToolStripMenuItem
+            // 
+            relatótiosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { listaDeClientesToolStripMenuItem });
+            relatótiosToolStripMenuItem.Name = "relatótiosToolStripMenuItem";
+            relatótiosToolStripMenuItem.Size = new Size(71, 20);
+            relatótiosToolStripMenuItem.Text = "Relatórios";
+            // 
+            // listaDeClientesToolStripMenuItem
+            // 
+            listaDeClientesToolStripMenuItem.Name = "listaDeClientesToolStripMenuItem";
+            listaDeClientesToolStripMenuItem.Size = new Size(180, 22);
+            listaDeClientesToolStripMenuItem.Text = "Lista de Clientes";
+            listaDeClientesToolStripMenuItem.Click += listaDeClientesToolStripMenuItem_Click;
+            // 
             // FrmTelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -197,5 +213,7 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel slblNome;
         private ToolStripStatusLabel slblPerfil;
+        private ToolStripMenuItem relatótiosToolStripMenuItem;
+        private ToolStripMenuItem listaDeClientesToolStripMenuItem;
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SistemaAtendimento.Model;
 using SistemaAtendimento.Repositories;
+using SistemaAtendimento.Services;
 
 namespace SistemaAtendimento.Controller
 {
@@ -84,6 +86,30 @@ namespace SistemaAtendimento.Controller
             {
                 _frmCadastroClientes.ExibirMensagem($"Erro ao excluir o cliente: {ex.Message}");
             }
+        }
+
+        public void GerarRelatorioPDF() // método para gerar um relatório em PDF com a lista de clientes
+        {
+
+            try
+            {
+                var listaClientes = _clienteRepository.Listar(); // obtém a lista de clientes do repositório
+
+                var relatorioClientes = new RelatorioClientes(); // cria uma instância do serviço de geração de relatórios
+
+                string arquivo = relatorioClientes.GerarListaClientes(listaClientes); // gera o relatório e obtém o caminho do arquivo PDF gerado
+
+                var psi = new ProcessStartInfo(arquivo) // configura o processo para abrir o arquivo PDF gerado
+                {
+                    UseShellExecute = true, // indica que o processo deve usar o shell do sistema para abrir o arquivo
+                };
+                Process.Start(psi); // inicia o processo para abrir o arquivo PDF gerado
+            }
+            catch (Exception ex)
+            {
+                ///Erro ao gerar o relatório
+            }
+            
         }
     }
 }
