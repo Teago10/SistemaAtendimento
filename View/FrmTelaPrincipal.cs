@@ -156,7 +156,20 @@ namespace SistemaAtendimento
 
         private void listaDeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                var situacaoAtendimentoController = new SituacaoAtendimentoController(null);
+                situacaoAtendimentoController.GerarRelatorioSituacaoAtendimentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao processar o relatório:{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SistemaAtendimento.Model;
 using SistemaAtendimento.Repositories;
 using SistemaAtendimento.View;
+using SistemaAtendimento.Services;
+using System.Diagnostics;
 
 namespace SistemaAtendimento.Controller
 {
@@ -14,22 +16,22 @@ namespace SistemaAtendimento.Controller
         private FrmCadastroStatusAtendimento _frmCadastroStatusAtendimento;
         private SituacaoAtendimentoRepository _situacaoAtendimentoRepository;
 
-        public SituacaoAtendimentoController(FrmCadastroStatusAtendimento view) 
+        public SituacaoAtendimentoController(FrmCadastroStatusAtendimento view)
         {
             _frmCadastroStatusAtendimento = view;
             _situacaoAtendimentoRepository = new SituacaoAtendimentoRepository();
         }
         public void ListarSituacoesAtendimento(string termo = "")
         {
-            try 
-            { 
+            try
+            {
                 var listaSituacaoAtendimentos = _situacaoAtendimentoRepository.Listar(termo);
                 _frmCadastroStatusAtendimento.ExibirSituacaoAtendimentos(listaSituacaoAtendimentos);
             }
             catch (Exception ex)
             {
                 // Tratar exceção (exibir mensagem de erro, log, etc.)
-                _frmCadastroStatusAtendimento.ExibirMensagem($"Erro ao listar situações de atendimento: { ex.Message}");
+                _frmCadastroStatusAtendimento.ExibirMensagem($"Erro ao listar situações de atendimento: {ex.Message}");
             }
         }
 
@@ -75,6 +77,29 @@ namespace SistemaAtendimento.Controller
             {
                 _frmCadastroStatusAtendimento.ExibirMensagem($"Erro ao excluir situação de atendimento: {ex.Message}");
             }
+        }
+
+        public void GerarRelatorioSituacaoAtendimentos()
+        {
+            try
+            {
+                var listaSituacaoAtendimentos = _situacaoAtendimentoRepository.Listar();
+                
+                var relatorioSituacaoAtendimentos = new RelatorioSituacaoAtendimentos();
+                
+                string arquivo = relatorioSituacaoAtendimentos.GerarListaSituacaoAtendimentos(listaSituacaoAtendimentos);
+
+                var psi = new ProcessStartInfo(arquivo)
+                {
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroStatusAtendimento.ExibirMensagem($"Erro ao gerar relatório de situações de atendimento: {ex.Message}");
+            }
+            
         }
     }
 }
