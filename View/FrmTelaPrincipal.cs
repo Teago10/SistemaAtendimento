@@ -114,8 +114,49 @@ namespace SistemaAtendimento
             }
             finally
             {
-                this.Cursor=Cursors.Default;
+                this.Cursor = Cursors.Default;
             }
+        }
+
+        private void listaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                var usuarioController = new UsuarioController(null);
+                usuarioController.GerarRelatorioUsuario();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao processar o relatório:{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void listaDeUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                var etapaController = new EtapaController(null);
+                etapaController.GerarRelatorioEtapa();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao processar o relatório:{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void listaDeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

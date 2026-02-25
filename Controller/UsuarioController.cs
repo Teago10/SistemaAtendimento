@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SistemaAtendimento.Model;
 using SistemaAtendimento.Repositories;
 using SistemaAtendimento.View;
+using SistemaAtendimento.Services;
+using System.Diagnostics;
 
 namespace SistemaAtendimento.Controller
 {
@@ -90,6 +92,29 @@ namespace SistemaAtendimento.Controller
                 return null;
             }
             return _usuarioRepository.Login(email, senha);
+        }
+
+        public void GerarRelatorioUsuario()
+        {
+            try
+            {
+                var listaUsuarios = _usuarioRepository.Listar();
+
+                var relatorioUsuarios = new RelatorioUsuarios();
+
+                string arquivo = relatorioUsuarios.GerarListaUsuarios(listaUsuarios);
+
+                var psi = new ProcessStartInfo(arquivo)
+                {
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroUsuario.ExibirMensagem($"Erro ao gerar o relatório de usuários: {ex.Message}");
+            }
         }
     }
 }

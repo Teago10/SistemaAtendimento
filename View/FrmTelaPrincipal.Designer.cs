@@ -39,12 +39,15 @@
             consultasToolStripMenuItem = new ToolStripMenuItem();
             sistemasToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
+            relatótiosToolStripMenuItem = new ToolStripMenuItem();
+            listaDeClientesToolStripMenuItem = new ToolStripMenuItem();
+            listaDeToolStripMenuItem = new ToolStripMenuItem();
+            listaDeUsuáriosToolStripMenuItem = new ToolStripMenuItem();
+            listaDeToolStripMenuItem1 = new ToolStripMenuItem();
             btnConexao = new Button();
             statusStrip1 = new StatusStrip();
             slblNome = new ToolStripStatusLabel();
             slblPerfil = new ToolStripStatusLabel();
-            relatótiosToolStripMenuItem = new ToolStripMenuItem();
-            listaDeClientesToolStripMenuItem = new ToolStripMenuItem();
             mnuPrincipal.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -129,6 +132,41 @@
             sairToolStripMenuItem.Text = "Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
+            // relatótiosToolStripMenuItem
+            // 
+            relatótiosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { listaDeClientesToolStripMenuItem, listaDeToolStripMenuItem, listaDeUsuáriosToolStripMenuItem, listaDeToolStripMenuItem1 });
+            relatótiosToolStripMenuItem.Name = "relatótiosToolStripMenuItem";
+            relatótiosToolStripMenuItem.Size = new Size(71, 20);
+            relatótiosToolStripMenuItem.Text = "Relatórios";
+            // 
+            // listaDeClientesToolStripMenuItem
+            // 
+            listaDeClientesToolStripMenuItem.Name = "listaDeClientesToolStripMenuItem";
+            listaDeClientesToolStripMenuItem.Size = new Size(187, 22);
+            listaDeClientesToolStripMenuItem.Text = "Lista de Clientes";
+            listaDeClientesToolStripMenuItem.Click += listaDeClientesToolStripMenuItem_Click;
+            // 
+            // listaDeToolStripMenuItem
+            // 
+            listaDeToolStripMenuItem.Name = "listaDeToolStripMenuItem";
+            listaDeToolStripMenuItem.Size = new Size(187, 22);
+            listaDeToolStripMenuItem.Text = "Lista de Usuários";
+            listaDeToolStripMenuItem.Click += listaDeToolStripMenuItem_Click;
+            // 
+            // listaDeUsuáriosToolStripMenuItem
+            // 
+            listaDeUsuáriosToolStripMenuItem.Name = "listaDeUsuáriosToolStripMenuItem";
+            listaDeUsuáriosToolStripMenuItem.Size = new Size(187, 22);
+            listaDeUsuáriosToolStripMenuItem.Text = "Lista de Etapas";
+            listaDeUsuáriosToolStripMenuItem.Click += listaDeUsuáriosToolStripMenuItem_Click;
+            // 
+            // listaDeToolStripMenuItem1
+            // 
+            listaDeToolStripMenuItem1.Name = "listaDeToolStripMenuItem1";
+            listaDeToolStripMenuItem1.Size = new Size(187, 22);
+            listaDeToolStripMenuItem1.Text = "Lista de Atendimento";
+            listaDeToolStripMenuItem1.Click += listaDeToolStripMenuItem1_Click;
+            // 
             // btnConexao
             // 
             btnConexao.Location = new Point(680, 360);
@@ -160,20 +198,6 @@
             slblPerfil.Name = "slblPerfil";
             slblPerfil.Size = new Size(34, 17);
             slblPerfil.Text = "Perfil";
-            // 
-            // relatótiosToolStripMenuItem
-            // 
-            relatótiosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { listaDeClientesToolStripMenuItem });
-            relatótiosToolStripMenuItem.Name = "relatótiosToolStripMenuItem";
-            relatótiosToolStripMenuItem.Size = new Size(71, 20);
-            relatótiosToolStripMenuItem.Text = "Relatórios";
-            // 
-            // listaDeClientesToolStripMenuItem
-            // 
-            listaDeClientesToolStripMenuItem.Name = "listaDeClientesToolStripMenuItem";
-            listaDeClientesToolStripMenuItem.Size = new Size(180, 22);
-            listaDeClientesToolStripMenuItem.Text = "Lista de Clientes";
-            listaDeClientesToolStripMenuItem.Click += listaDeClientesToolStripMenuItem_Click;
             // 
             // FrmTelaPrincipal
             // 
@@ -215,5 +239,8 @@
         private ToolStripStatusLabel slblPerfil;
         private ToolStripMenuItem relatótiosToolStripMenuItem;
         private ToolStripMenuItem listaDeClientesToolStripMenuItem;
+        private ToolStripMenuItem listaDeToolStripMenuItem;
+        private ToolStripMenuItem listaDeUsuáriosToolStripMenuItem;
+        private ToolStripMenuItem listaDeToolStripMenuItem1;
     }
 }

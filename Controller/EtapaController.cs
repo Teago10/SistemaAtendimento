@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SistemaAtendimento.Model;
 using SistemaAtendimento.Repositories;
 using SistemaAtendimento.View;
+using SistemaAtendimento.Services;
+using System.Diagnostics;
 
 namespace SistemaAtendimento.Controller
 {
@@ -62,6 +64,28 @@ namespace SistemaAtendimento.Controller
             catch (Exception ex)
             {
                 _frmCadastroEtapas.ExibirMensagem($"Erro ao atualizar a etapa: {ex.Message}");
+            }
+        }
+
+        public void GerarRelatorioEtapa()
+        {
+            try
+            {
+                var listaEtapas = _etapaRepository.Listar();
+
+                var relatorioEtapas = new RelatorioEtapas();
+
+                string arquivo = relatorioEtapas.GerarListaEtapas(listaEtapas);
+
+                var psi = new ProcessStartInfo(arquivo)
+                {
+                    UseShellExecute = true,
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroEtapas.ExibirMensagem($"Erro ao gerar o relatório: {ex.Message}");
             }
         }
     }
