@@ -51,7 +51,33 @@ namespace SistemaAtendimento.Services
 
 
                     //Conteúdo Central
-                    //page.Content().AlignCenter().Text(t => { });
+                    page.Content().PaddingVertical(10).Table(table => {
+
+                        table.ColumnsDefinition(columns => {
+
+                            columns.ConstantColumn(100);
+                            columns.RelativeColumn(4);
+                            columns.RelativeColumn(6);
+
+
+                        });
+
+                        table.Header(header => {
+
+                            header.Cell().BorderBottom(1).Text("ID").Bold();
+                            header.Cell().BorderBottom(1).Text("NOME").Bold();
+                            header.Cell().BorderBottom(1).Text("ORDEM").Bold();
+
+                        });
+
+                        foreach (var etapas in listaEtapas)
+                        {
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(etapas.Id.ToString());
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(etapas.Nome ?? "-");
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(etapas.Ordem.ToString());
+                        }
+                    
+                    });
 
 
                     //Rodapé

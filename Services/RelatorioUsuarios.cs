@@ -52,7 +52,39 @@ namespace SistemaAtendimento.Services
                     });
 
                     //Conteúdo Central
-                    //page.Content().AlignCenter().Text(t => { });
+                    page.Content().PaddingVertical(10).Table(table => {
+                    
+                        table.ColumnsDefinition(columns =>
+                        {
+                            columns.ConstantColumn(70);
+                            columns.RelativeColumn(4);
+                            columns.RelativeColumn(4);
+                            columns.RelativeColumn(4);
+                        });
+                        //Cabeçalho da tabela
+                        table.Header(header =>
+                        {
+                            header.Cell().Element(CellStyle).Text("ID").FontSize(12).Bold();
+                            header.Cell().Element(CellStyle).Text("Nome").FontSize(12).Bold();
+                            header.Cell().Element(CellStyle).Text("Email").FontSize(12).Bold();
+                            header.Cell().Element(CellStyle).Text("Perfil").FontSize(12).Bold();
+                        });
+                        //Dados da tabela
+                        foreach (var usuario in listaUsuarios)
+                        {
+                            table.Cell().Element(CellStyle).Text(usuario.Id.ToString());
+                            table.Cell().Element(CellStyle).Text(usuario.Nome);
+                            table.Cell().Element(CellStyle).Text(usuario.Email);
+                            table.Cell().Element(CellStyle).Text(usuario.Perfil);
+                        }
+                        //Estilo das células
+                        //Container é um objeto que representa um elemento visual (como uma célula, bloco ou seção do PDF).
+                        IContainer CellStyle(IContainer container)
+                        {
+                            return container.BorderBottom(1).PaddingVertical(5);
+                        }
+
+                    });
 
                     //Rodapé
                     page.Footer().AlignCenter().Text(t => {

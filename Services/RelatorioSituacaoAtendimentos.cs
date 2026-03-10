@@ -50,7 +50,35 @@ namespace SistemaAtendimento.Services
                     });
 
                     //Conteúdo Central
-                    //page.Content().AlignCenter().Text(t => { });
+                    page.Content().PaddingVertical(10).Table(table => {
+                    
+                        table.ColumnsDefinition(columns =>
+                        {
+                            columns.ConstantColumn(100);
+                            columns.RelativeColumn(4);
+                            columns.RelativeColumn(6);
+                        });
+                        //Cabeçalho da tabela
+                        table.Header(header =>
+                        {
+                            header.Cell().Element(CellStyle).Text("ID").FontSize(10).Bold();
+                            header.Cell().Element(CellStyle).Text("Estatus").FontSize(10).Bold();
+                            header.Cell().Element(CellStyle).Text("Ativo").FontSize(10).Bold();
+                        });
+                        //Dados da tabela
+                        foreach (var atendimento in listaAtendimentos)
+                        {
+                            table.Cell().Element(CellStyle).Text(atendimento.Id.ToString());
+                            table.Cell().Element(CellStyle).Text(atendimento.Nome ?? "-");
+                            table.Cell().Element(CellStyle).Text(atendimento.Ativo ? "Sim" : "Não");
+                        }
+                        //Estilo das células
+                        IContainer CellStyle(IContainer container)
+                        {
+                            return container.BorderBottom(1).PaddingVertical(5);
+                        }
+
+                    });
                     
                     //Rodapé
                     page.Footer().AlignCenter().Text(t =>

@@ -50,7 +50,42 @@ namespace SistemaAtendimento.Services
                     });
 
                     //Conteúdo Central
-                    //page.Content().AlignCenter().Text(t => { });
+                    page.Content().PaddingVertical(10).Table(table => {
+
+                        //Define a quantidade de coluna e sua largura
+                        table.ColumnsDefinition(columns => {
+
+                            columns.ConstantColumn(30);
+                            columns.RelativeColumn(3);
+                            columns.RelativeColumn(3);
+                            columns.RelativeColumn(2);
+                            columns.RelativeColumn(2);
+                            
+
+                        });
+
+                        table.Header(header => {
+
+                            header.Cell().BorderBottom(1).Text("ID").Bold();
+                            header.Cell().BorderBottom(1).Text("Nome").Bold();
+                            header.Cell().BorderBottom(1).Text("E-MAIL").Bold();
+                            header.Cell().BorderBottom(1).Text("TELEFONE").Bold();
+                            header.Cell().BorderBottom(1).Text("CPF_CNPJ").Bold();
+
+
+                        });
+
+                        foreach (var clientes in listaClientes)
+                        {
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(clientes.Id.ToString());
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(clientes.Nome ?? "-");
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(clientes.Email ?? "-");
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(clientes.Telefone ?? "-");
+                            table.Cell().BorderBottom(0.5f).PaddingVertical(2).Text(clientes.Cpf_Cnpj ?? "-");
+
+                        }
+
+                    });
 
                     //Rodapé
                     page.Footer().AlignCenter().Text(t => {
